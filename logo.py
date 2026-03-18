@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-LOGO for David
+David Logo
 A Logo interpreter with turtle graphics — all in one window.
 Canvas on top, command line on the bottom, like MSX Logo.
 """
@@ -10,11 +10,13 @@ import tkinter.font as tkfont
 import os
 import sys
 import math
+import json
 
 # ─── PATHS ───────────────────────────────────────────────────────────────────
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 PROCS_FILE = os.path.join(SCRIPT_DIR, "david-procs.logo")
+SHAPES_FILE = os.path.join(SCRIPT_DIR, "david-shapes.json")
 
 # ─── CUSTOM TURTLE (draws on a tkinter Canvas) ──────────────────────────────
 
@@ -31,6 +33,8 @@ class LogoTurtle:
         self.pen_width = 2
         self.visible = True
         self.cursor_id = None  # list of canvas items for the turtle shape
+        self.bitmap = list(self.DEFAULT_BITMAP)
+        self.pixels = self.bitmap_to_pixels(self.bitmap)
         self._draw_cursor()
 
     # ── Coordinate conversion: Logo (0,0)=center, y-up → Canvas pixels ──
@@ -47,9 +51,9 @@ class LogoTurtle:
 
     # ── Turtle cursor (MSX-style pixel-art turtle seen from above) ──────
 
-    # 16x16 MSX Logo turtle bitmap. Row 0 = top, '1' = filled pixel.
+    # Default 16x16 MSX Logo turtle bitmap. Row 0 = top, '1' = filled pixel.
     # Head points up (toward row 0). Center of sprite = (7.5, 7.5).
-    TURTLE_BITMAP = [
+    DEFAULT_BITMAP = [
         "0000000000000000",  # 0
         "0000000110000000",  # 1
         "0000001111000000",  # 2
@@ -68,16 +72,19 @@ class LogoTurtle:
         "0000000000000000",  # 15
     ]
 
-    # Pre-compute pixel offsets from center (dx=right, dy=forward/up)
-    TURTLE_PIXELS = []
-    for row_idx, row in enumerate(TURTLE_BITMAP):
-        for col_idx, ch in enumerate(row):
-            if ch == '1':
-                dx = col_idx - 7.5   # center horizontally
-                dy = 7.5 - row_idx   # top of bitmap = forward
-                TURTLE_PIXELS.append((dx, dy))
-
     PIXEL_SIZE = 2  # size of each pixel block in canvas units
+
+    @staticmethod
+    def bitmap_to_pixels(bitmap):
+        """Convert a 16x16 bitmap (list of 16 strings) to pixel offsets."""
+        pixels = []
+        for row_idx, row in enumerate(bitmap):
+            for col_idx, ch in enumerate(row):
+                if ch == '1':
+                    dx = col_idx - 7.5
+                    dy = 7.5 - row_idx
+                    pixels.append((dx, dy))
+        return pixels
 
     def _draw_cursor(self):
         if self.cursor_id:
@@ -93,7 +100,7 @@ class LogoTurtle:
         ps = self.PIXEL_SIZE
 
         parts = []
-        for dx, dy in self.TURTLE_PIXELS:
+        for dx, dy in self.pixels:
             # Rotate local (dx=right, dy=forward) to canvas coords
             wx = dx * cos_a + dy * sin_a
             wy = -dx * sin_a + dy * cos_a
@@ -191,6 +198,148 @@ class LogoTurtle:
     def isdown(self):
         return self.pen_down
 
+    def set_bitmap(self, bitmap):
+        """Change the turtle sprite to a new 16x16 bitmap."""
+        self.bitmap = list(bitmap)
+        self.pixels = self.bitmap_to_pixels(self.bitmap)
+        self._update_cursor()
+
+# ─── SHAPE STORAGE ───────────────────────────────────────────────────────────
+
+# Named shapes that persist between sessions (saved to david-shapes.json)
+saved_shapes = {}
+
+def load_shapes():
+    """Load saved shapes from david-shapes.json."""
+    global saved_shapes
+    if not os.path.exists(SHAPES_FILE):
+        return
+    try:
+        with open(SHAPES_FILE, 'r') as f:
+            saved_shapes = json.load(f)
+    except Exception:
+        pass
+
+def save_shapes():
+    """Save all named shapes to david-shapes.json."""
+    with open(SHAPES_FILE, 'w') as f:
+        json.dump(saved_shapes, f, indent=2)
+
+# ─── BITMAP EDITOR (pop-up 16x16 grid) ──────────────────────────────────────
+
+class BitmapEditor:
+    """A 16x16 pixel grid editor for designing turtle sprites.
+    Click cells to toggle them. Like the MSX Logo shape editor."""
+
+    CELL_SIZE = 24  # pixels per grid cell
+
+    def __init__(self, parent_app, initial_bitmap=None, shape_name=None):
+        self.app = parent_app
+        self.shape_name = shape_name
+        self.grid = []
+        # Initialize grid from bitmap or blank
+        if initial_bitmap:
+            for row in initial_bitmap:
+                self.grid.append([int(ch) for ch in row])
+        else:
+            self.grid = [[0]*16 for _ in range(16)]
+
+        self.win = tk.Toplevel(parent_app.root)
+        self.win.title(f"Shape Editor{' — ' + shape_name if shape_name else ''}")
+        self.win.configure(bg="#1a1a2e")
+        self.win.resizable(False, False)
+
+        cs = self.CELL_SIZE
+
+        # Canvas for the grid
+        self.canvas = tk.Canvas(
+            self.win, width=16*cs+1, height=16*cs+1,
+            bg="black", highlightthickness=0
+        )
+        self.canvas.pack(padx=10, pady=(10, 5))
+
+        # Draw grid and cells
+        self.rects = [[None]*16 for _ in range(16)]
+        for r in range(16):
+            for c in range(16):
+                x1, y1 = c*cs, r*cs
+                x2, y2 = x1+cs, y1+cs
+                fill = "lime green" if self.grid[r][c] else "black"
+                rect = self.canvas.create_rectangle(
+                    x1, y1, x2, y2,
+                    fill=fill, outline="#333333", width=1
+                )
+                self.rects[r][c] = rect
+
+        self.canvas.bind("<Button-1>", self._on_click)
+        self.canvas.bind("<B1-Motion>", self._on_drag)
+        self._last_toggled = None  # track drag to avoid double-toggle
+
+        # Buttons
+        btn_frame = tk.Frame(self.win, bg="#1a1a2e")
+        btn_frame.pack(pady=(5, 10))
+
+        btn_style = dict(bg="#333333", fg="lime green", font=("Menlo", 12),
+                         activebackground="#555555", activeforeground="white",
+                         borderwidth=1, relief=tk.RAISED, padx=8, pady=2)
+
+        tk.Button(btn_frame, text="OK", command=self._ok, **btn_style).pack(side=tk.LEFT, padx=4)
+        tk.Button(btn_frame, text="Clear", command=self._clear, **btn_style).pack(side=tk.LEFT, padx=4)
+        tk.Button(btn_frame, text="Cancel", command=self.win.destroy, **btn_style).pack(side=tk.LEFT, padx=4)
+
+        # Grab focus
+        self.win.grab_set()
+        self.win.focus_set()
+
+    def _cell_at(self, x, y):
+        """Return (row, col) for canvas coordinates, or None."""
+        cs = self.CELL_SIZE
+        c = int(x // cs)
+        r = int(y // cs)
+        if 0 <= r < 16 and 0 <= c < 16:
+            return r, c
+        return None
+
+    def _on_click(self, event):
+        """Toggle a cell on click."""
+        cell = self._cell_at(event.x, event.y)
+        if cell is None:
+            return
+        r, c = cell
+        self.grid[r][c] = 1 - self.grid[r][c]
+        fill = "lime green" if self.grid[r][c] else "black"
+        self.canvas.itemconfigure(self.rects[r][c], fill=fill)
+        self._last_toggled = (r, c)
+
+    def _on_drag(self, event):
+        """Paint cells while dragging (set to filled)."""
+        cell = self._cell_at(event.x, event.y)
+        if cell is None or cell == self._last_toggled:
+            return
+        r, c = cell
+        self.grid[r][c] = 1
+        self.canvas.itemconfigure(self.rects[r][c], fill="lime green")
+        self._last_toggled = (r, c)
+
+    def _clear(self):
+        """Clear all cells."""
+        for r in range(16):
+            for c in range(16):
+                self.grid[r][c] = 0
+                self.canvas.itemconfigure(self.rects[r][c], fill="black")
+
+    def _ok(self):
+        """Apply the bitmap to the turtle and optionally save it."""
+        bitmap = [''.join(str(cell) for cell in row) for row in self.grid]
+        self.app.turtle.set_bitmap(bitmap)
+        if self.shape_name:
+            saved_shapes[self.shape_name.upper()] = bitmap
+            save_shapes()
+            self.app.print_output(f"Shape {self.shape_name.upper()} saved!")
+        else:
+            self.app.print_output("Turtle shape updated!")
+        self.win.destroy()
+
 # ─── INTERPRETER STATE ───────────────────────────────────────────────────────
 
 procedures = {}   # name -> (param_names, body_string)
@@ -215,7 +364,7 @@ KNOWN_COMMANDS = [
     'COLOR', 'SETWIDTH', 'CS', 'CLEARSCREEN', 'CLEAN', 'HT', 'HIDETURTLE',
     'ST', 'SHOWTURTLE', 'SETBG', 'BGCOLOR', 'REPEAT', 'IF', 'IFELSE', 'MAKE',
     'STOP', 'PRINT', 'SUM', 'TO', 'HELP', 'BYE', 'PROCS', 'POS', 'FORGET',
-    'DEMO',
+    'DEMO', 'SETSHAPE', 'EDITSHAPE', 'SHAPES',
 ]
 
 # ─── TYPO SUGGESTION ────────────────────────────────────────────────────────
@@ -489,6 +638,40 @@ def execute(tokens, app, local_vars=None):
             else:
                 app.print_output(f"I don't know a procedure called {name}.")
 
+        # ── SHAPE COMMANDS ──────────────────────────────────────────────────
+        elif cmd == 'SETSHAPE':
+            name = need_word('SETSHAPE').upper()
+            if name == 'TURTLE':
+                # Reset to default turtle
+                t.set_bitmap(LogoTurtle.DEFAULT_BITMAP)
+                app.print_output("Shape set to TURTLE.")
+            elif name in saved_shapes:
+                t.set_bitmap(saved_shapes[name])
+                app.print_output(f"Shape set to {name}.")
+            else:
+                app.print_output(f"I don't know a shape called {name}. Try SHAPES to see saved shapes.")
+
+        elif cmd == 'EDITSHAPE':
+            # EDITSHAPE or EDITSHAPE NAME
+            shape_name = None
+            if i < len(tokens) and tokens[i][0] == 'W':
+                shape_name = consume()[1].upper()
+            # Start from current bitmap, or the named shape if it exists
+            if shape_name and shape_name in saved_shapes:
+                initial = saved_shapes[shape_name]
+            else:
+                initial = t.bitmap
+            BitmapEditor(app, initial_bitmap=initial, shape_name=shape_name)
+
+        elif cmd == 'SHAPES':
+            if saved_shapes:
+                app.print_output("Saved shapes:")
+                for name in saved_shapes:
+                    app.print_output(f"  {name}")
+                app.print_output("Use SETSHAPE name to change the turtle.")
+            else:
+                app.print_output("No saved shapes yet. Try EDITSHAPE STAR to make one!")
+
         elif cmd == 'DEMO':
             run_demo(app)
 
@@ -596,6 +779,13 @@ MAKING PROCEDURES:
   END
   FORGET SQUARE  \u2014 forget a procedure
 
+SHAPES:
+  EDITSHAPE      open the shape editor
+  EDITSHAPE STAR edit/create a named shape
+  SETSHAPE STAR  use a saved shape
+  SETSHAPE TURTLE  back to the turtle
+  SHAPES       list saved shapes
+
 OTHER:
   DEMO         see a cool pattern!
   PROCS        list your procedures
@@ -618,6 +808,9 @@ OTHER:
     'MAKE': "MAKE \"NAME value \u2014 store a number in a name.\nExample: MAKE \"SIZE 100\nThen use :SIZE in commands.",
     'FORGET': "FORGET name \u2014 forget a procedure you made with TO.\nExample: FORGET SQUARE",
     'DEMO': "DEMO \u2014 watch the turtle draw a cool pattern!",
+    'EDITSHAPE': "EDITSHAPE or EDITSHAPE name \u2014 open the pixel editor.\nClick squares to draw your own turtle shape!\nExample: EDITSHAPE STAR",
+    'SETSHAPE': "SETSHAPE name \u2014 change the turtle to a saved shape.\nSETSHAPE TURTLE goes back to the default.\nExample: SETSHAPE STAR",
+    'SHAPES': "SHAPES \u2014 list all your saved shapes.",
 }
 
 def show_help(topic, app):
@@ -633,7 +826,7 @@ class LogoApp:
 
     def __init__(self):
         self.root = tk.Tk()
-        self.root.title("LOGO \u2014 David's Turtle")
+        self.root.title("David Logo")
         self.root.configure(bg="#1a1a2e")
         self.root.geometry("800x700")
 
@@ -727,8 +920,9 @@ class LogoApp:
 
     def _startup(self):
         """Print banner and load saved procedures."""
-        self.print_output("LOGO - David's Turtle")
+        self.print_output("David Logo \u2014 David's Turtle is ready.")
         self.print_output("Type HELP to see commands. Type BYE to quit.")
+        load_shapes()
         messages = load_procedures()
         for msg in messages:
             self.print_output(msg)

@@ -1,0 +1,22 @@
+; snowflake.logo — A six-armed snowflake
+; Each arm is a line with smaller branches
+
+TO BRANCH :SIZE
+FD :SIZE
+RT 45
+FD :SIZE
+BK :SIZE
+LT 90
+FD :SIZE
+BK :SIZE
+RT 45
+BK :SIZE
+END
+
+TO SNOWFLAKE :SIZE
+REPEAT 6 [BRANCH :SIZE RT 60]
+END
+
+CS
+SETPC 0
+SNOWFLAKE 60

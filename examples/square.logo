@@ -1,0 +1,22 @@
+; square.logo — Rotating colored squares
+; Type these commands one at a time, or paste them all!
+
+TO SQUARE :SIZE
+REPEAT 4 [FD :SIZE RT 90]
+END
+
+CS
+SETPC 1
+SQUARE 80
+RT 30
+SETPC 3
+SQUARE 80
+RT 30
+SETPC 4
+SQUARE 80
+RT 30
+SETPC 6
+SQUARE 80
+RT 30
+SETPC 5
+SQUARE 80

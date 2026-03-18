@@ -1,0 +1,22 @@
+; star.logo — Five-pointed stars
+; A star turns 144 degrees each time!
+
+TO STAR :SIZE
+REPEAT 5 [FD :SIZE RT 144]
+END
+
+CS
+SETPC 3
+STAR 100
+PU
+RT 90
+FD 120
+PD
+SETPC 1
+STAR 60
+PU
+LT 90
+FD 80
+PD
+SETPC 4
+STAR 40

@@ -1,0 +1,11 @@
+# User's personal saved data (not part of the project)
+david-procs.logo
+david-shapes.json
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# macOS
+.DS_Store
