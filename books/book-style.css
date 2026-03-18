@@ -1,0 +1,178 @@
+/* The Turtle Book — PDF stylesheet */
+
+@page {
+    size: letter;
+    margin: 2.5cm 2cm 2.5cm 2cm;
+
+    @bottom-center {
+        content: counter(page);
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 10pt;
+        color: #888;
+    }
+}
+
+@page :first {
+    @bottom-center { content: none; }
+}
+
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 13pt;
+    line-height: 1.6;
+    color: #222;
+}
+
+/* ── Title page ────────────────────────────────────────── */
+
+h1 {
+    font-size: 36pt;
+    font-weight: 700;
+    color: #1a7a3a;
+    text-align: center;
+    margin-top: 3cm;
+    margin-bottom: 0.2cm;
+    page-break-after: avoid;
+}
+
+h1 + h3 {
+    font-size: 16pt;
+    font-weight: 400;
+    color: #555;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 0.5cm;
+}
+
+h1 + h3 + p {
+    /* "For David" */
+    text-align: center;
+    font-style: italic;
+    font-size: 14pt;
+    color: #777;
+    margin-bottom: 4cm;
+}
+
+h1 + h3 + p + hr {
+    /* Force a page break after the title block */
+    page-break-after: always;
+    visibility: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+/* ── Chapter headings ──────────────────────────────────── */
+
+h2 {
+    font-size: 20pt;
+    font-weight: 700;
+    color: #1a7a3a;
+    margin-top: 1.5cm;
+    margin-bottom: 0.6cm;
+    page-break-before: always;
+    page-break-after: avoid;
+    border-bottom: 2pt solid #1a7a3a;
+    padding-bottom: 0.2cm;
+}
+
+/* The first hr after the title acts as the title page break */
+
+/* ── Horizontal rules (section dividers) ───────────────── */
+
+hr {
+    border: none;
+    border-top: 1pt solid #ddd;
+    margin: 1cm 0;
+}
+
+/* ── Body text ─────────────────────────────────────────── */
+
+p {
+    margin: 0.3cm 0;
+    orphans: 3;
+    widows: 3;
+}
+
+strong {
+    color: #1a7a3a;
+}
+
+em {
+    color: #555;
+}
+
+/* ── Code blocks (Logo commands) ───────────────────────── */
+
+pre {
+    background-color: #1a1a2e;
+    color: #33ff33;
+    font-family: "Menlo", "Courier New", monospace;
+    font-size: 12pt;
+    padding: 0.5cm 0.7cm;
+    border-radius: 6pt;
+    margin: 0.4cm 0;
+    page-break-inside: avoid;
+    line-height: 1.5;
+}
+
+code {
+    font-family: "Menlo", "Courier New", monospace;
+    font-size: 11pt;
+    background-color: #f0f0f0;
+    padding: 1pt 4pt;
+    border-radius: 3pt;
+}
+
+pre code {
+    background: none;
+    padding: 0;
+    font-size: 12pt;
+}
+
+/* ── Lists ─────────────────────────────────────────────── */
+
+ul, ol {
+    margin: 0.3cm 0;
+    padding-left: 1.2cm;
+}
+
+li {
+    margin: 0.15cm 0;
+}
+
+/* ── Tables ────────────────────────────────────────────── */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0.5cm 0;
+    font-size: 12pt;
+    page-break-inside: avoid;
+}
+
+th {
+    background-color: #1a7a3a;
+    color: white;
+    padding: 6pt 10pt;
+    text-align: left;
+    font-weight: 600;
+}
+
+td {
+    padding: 5pt 10pt;
+    border-bottom: 0.5pt solid #ddd;
+}
+
+tr:nth-child(even) td {
+    background-color: #f7f7f7;
+}
+
+/* ── Last line (Happy drawing!) ────────────────────────── */
+
+body > p:last-child {
+    text-align: center;
+    font-size: 16pt;
+    font-style: italic;
+    color: #1a7a3a;
+    margin-top: 2cm;
+}
