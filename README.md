@@ -1,20 +1,16 @@
 # David Logo
 
-> A Python Logo interpreter for the Raspberry Pi, built for a first grader learning geometry — inspired by MSX Logo.
+> A Python Logo interpreter inspired by MSX Logo, built for a first grader learning geometry.
 
 ## About
 
-A dad recreating his childhood MSX Logo experience for his son David, who is learning geometry in first grade and already uses Scratch. David Logo brings the classic Logo turtle graphics experience to modern hardware in a single Python script, with the same feel as the original MSX Logo from the 1980s — drawing canvas on top, command line on the bottom, all in one window.
+I grew up with MSX Logo in the 1980s — typing `FD 100 RT 90` and watching a turtle draw squares on the screen. It's how I first understood what an angle was.
 
-## Screenshot
+My son David is in first grade, learning geometry. He already loves Scratch and Minecraft, so he's comfortable with a computer. I wanted to give him the same experience I had: a simple command line, a turtle that listens, and the thrill of making shapes appear on screen by typing code.
 
-> _TODO: Add a screenshot of the David Logo window here._
+David Logo is my attempt to recreate that. It's a single Python script that opens one window — drawing canvas on top, command line on the bottom — just like the original MSX Logo. The turtle sprite is a 16x16 pixel bitmap, the heading convention is classic Logo (0° = north), and the error messages are kid-friendly. Everything runs on a Raspberry Pi, a Mac, or any machine with Python 3.
 
-## Requirements
-
-- Python 3 with tkinter (standard on Raspberry Pi OS)
-- Any Raspberry Pi 3/4/5 (also works on macOS, Linux, Windows)
-- HDMI monitor and USB keyboard
+![David Logo](screenshot.jpeg)
 
 ## How to Run
 
@@ -28,7 +24,9 @@ Or use the launch script:
 ./logo.sh
 ```
 
-## Quick Command Reference
+Requires Python 3 with tkinter. On Raspberry Pi OS and most Linux distributions this is included by default. On macOS with Homebrew: `brew install python-tk@3.14` (match your Python version).
+
+## Commands
 
 | Command | What It Does |
 |---|---|
@@ -41,31 +39,37 @@ Or use the launch script:
 | PU / PD | Pen up / Pen down |
 | SETPC 1 | Set pen color (0–11) |
 | SETBG 0 | Set background color (0–15) |
+| SETWIDTH 3 | Set line thickness |
 | HOME | Go to center |
 | HT / ST | Hide / Show turtle |
+| POS | Show turtle position and heading |
 | TO name ... END | Define a procedure |
 | FORGET name | Delete a procedure |
-| EDITSHAPE | Open the pixel shape editor |
-| SETSHAPE name | Use a saved shape |
-| DEMO | Watch a cool pattern |
+| PROCS | List saved procedures |
+| EDITSHAPE | Open the 16x16 pixel shape editor |
+| EDITSHAPE name | Create/edit a named shape |
+| SETSHAPE name | Switch to a saved shape |
+| SETSHAPE TURTLE | Back to the default turtle |
+| SHAPES | List saved shapes |
+| DEMO | Watch a colorful pattern |
 | HELP | See all commands |
 | BYE | Quit |
 
 ## Turtle Sprite
 
-The turtle is a 16×16 pixel bitmap in the style of MSX Logo. You can design your own sprites with the `EDITSHAPE` command, which opens a visual grid editor. Click cells to toggle pixels, drag to paint. Saved shapes persist in `david-shapes.json`.
+The turtle is a 16x16 pixel bitmap rendered as small squares, in the style of MSX Logo. You can design your own sprites with the `EDITSHAPE` command — it opens a visual grid editor where you click cells to toggle pixels and drag to paint. Shapes are saved to `david-shapes.json` and persist between sessions. Type `SETSHAPE TURTLE` to go back to the default.
 
 ## Persistent Procedures
 
-When you define a procedure with `TO ... END`, it's automatically saved to `david-procs.logo` and reloaded next time you start David Logo. Use `PROCS` to list them, `FORGET` to delete one.
+When David defines a procedure with `TO ... END`, it's automatically saved to `david-procs.logo` and reloaded next time he starts the program. No work is lost between sessions. `PROCS` lists them, `FORGET` deletes one.
 
 ## The Turtle Book
 
-See `books/logo-book.md` for a 16-chapter tutorial written for David, starting from "Meet the Turtle" and building up to stars, circles, and custom procedures.
+I wrote a 20-chapter tutorial for David in `books/logo-book.md` (also available as [a PDF](books/logo-book.pdf)). It starts with "Meet the Turtle" and builds up through squares, triangles, the shape rule (turn = 360 / sides), colors, procedures with variables, and designing custom turtle sprites. The language is written for a first grader who reads well.
 
 ## Example Programs
 
-The `examples/` folder contains Logo programs you can study and type in:
+The `examples/` folder has a few Logo programs to type in:
 
 - `square.logo` — rotating colored squares
 - `star.logo` — five-pointed stars
