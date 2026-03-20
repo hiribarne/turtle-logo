@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+/* Lulu coil-bound cover: US Letter
+ * Total with bleed: 17.25 × 11.25 in
+ * Each half: 8.625 in wide (8.5 trim + 0.125 bleed)
+ * Safety: 0.5 in from trim = 0.625 in from doc edge
+ * No spine (coil bound)
+ */
+@page {
+    size: 17.25in 11.25in;
+    margin: 0;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    width: 17.25in;
+    height: 11.25in;
+    position: relative;
+    background: white;
+}
+
+/* ── Front cover (right half) ──────────────────── */
+
+.front {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 8.625in;
+    height: 11.25in;
+}
+
+.front-content {
+    position: absolute;
+    top: 0.625in;
+    left: 0.5in;
+    right: 0.625in;
+    bottom: 0.625in;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.front-title {
+    font-size: 48pt;
+    font-weight: 700;
+    color: #1a7a3a;
+    margin-bottom: 0.2in;
+}
+
+.front-subtitle {
+    font-size: 18pt;
+    font-weight: 400;
+    color: #555;
+    margin-bottom: 0.8in;
+}
+
+.front-turtle {
+    width: 2.5in;
+    height: auto;
+    margin-bottom: 0.8in;
+}
+
+.front-dedication {
+    font-size: 16pt;
+    font-style: italic;
+    color: #777;
+}
+
+.front-accent-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 0.2in;
+    background: #1a7a3a;
+}
+
+.front-accent-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 0.2in;
+    background: #1a7a3a;
+}
+
+/* ── Back cover (left half) ────────────────────── */
+
+.back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 8.625in;
+    height: 11.25in;
+}
+
+.back-content {
+    position: absolute;
+    top: 0.625in;
+    left: 0.625in;
+    right: 0.5in;
+    bottom: 0.625in;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.back-text {
+    font-size: 14pt;
+    line-height: 1.8;
+    color: #444;
+    max-width: 5.5in;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.back-text p {
+    margin-bottom: 0.25in;
+}
+
+.back-text strong {
+    color: #222;
+}
+
+.back-commands {
+    font-family: "Menlo", "Courier New", monospace;
+    font-size: 12pt;
+    color: #1a7a3a;
+    text-align: center;
+    margin: 0.4in auto;
+    letter-spacing: 0.5pt;
+}
+
+.back-accent-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 0.2in;
+    background: #1a7a3a;
+}
+
+.back-accent-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 0.2in;
+    background: #1a7a3a;
+}
+
+/* Barcode area placeholder — bottom-left of back cover */
+.barcode-area {
+    position: absolute;
+    bottom: 0.625in;
+    left: 0.625in;
+    width: 3.622in;
+    height: 1.26in;
+    /* Leave empty for Lulu barcode */
+}
+</style>
+</head>
+<body>
+
+<!-- Back cover (left half) -->
+<div class="back">
+    <div class="back-accent-top"></div>
+    <div class="back-accent-bottom"></div>
+    <div class="back-content">
+        <div class="back-text">
+            <p>There is a turtle on your screen.<br>
+            You tell it what to do.<br>
+            It listens and draws!</p>
+
+            <div class="back-commands">
+                FD 100 &nbsp; RT 90 &nbsp; REPEAT 4 [FD 80 RT 90]
+            </div>
+
+            <p><strong>The Turtle Book</strong> is a 20-chapter tutorial
+            that teaches geometry through Logo programming.
+            Start with simple lines, build up to squares and stars,
+            learn the shape rule, create colorful patterns,
+            and design your own turtle sprites.</p>
+
+            <p>Written for young learners who are ready to type.<br>
+            All you need is a computer and curiosity.</p>
+        </div>
+    </div>
+    <div class="barcode-area"></div>
+</div>
+
+<!-- Front cover (right half) -->
+<div class="front">
+    <div class="front-accent-top"></div>
+    <div class="front-accent-bottom"></div>
+    <div class="front-content">
+        <div class="front-title">The Turtle Book</div>
+        <div class="front-subtitle">Learn to Draw with David Logo</div>
+        <img class="front-turtle" src="cover-turtle.svg">
+        <div class="front-dedication">For David</div>
+    </div>
+</div>
+
+</body>
+</html>

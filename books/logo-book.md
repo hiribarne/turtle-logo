@@ -5,6 +5,13 @@
 
 ---
 
+<div class="copyright">
+<p>David Logo — The Turtle Book</p>
+<p>Copyright © 2026</p>
+<p>For personal and educational use.</p>
+<p>Made with <img src="emoji-turtle.svg" style="height:1.4em;vertical-align:-0.25em"> <img src="emoji-heart.svg" style="height:1.4em;vertical-align:-0.25em"> for David.</p>
+</div>
+
 ## Meet the Turtle
 
 There is a turtle on your screen.
@@ -261,6 +268,15 @@ REPEAT 36 [FD 10 RT 10]
 It looks like a circle!
 
 The turtle cannot draw a real circle. But if you use enough tiny steps, it looks just like one.
+
+Want an even smoother circle? Try this:
+
+```
+CS
+REPEAT 360 [FD 1 RT 1]
+```
+
+360 tiny steps, 1 degree each. That is as close to a perfect circle as the turtle can get!
 
 ---
 
@@ -670,4 +686,4 @@ SHAPES
 
 ---
 
-*Happy drawing, David!*
+*Happy drawing!*

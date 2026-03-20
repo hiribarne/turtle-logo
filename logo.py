@@ -51,7 +51,7 @@ class LogoTurtle:
 
     # ── Turtle cursor (MSX-style pixel-art turtle seen from above) ──────
 
-    # Default 16x16 MSX Logo turtle bitmap. Row 0 = top, '1' = filled pixel.
+    # Default 16x16 turtle bitmap. Row 0 = top, '1' = filled pixel.
     # Head points up (toward row 0). Center of sprite = (7.5, 7.5).
     DEFAULT_BITMAP = [
         "0000000000000000",  # 0
@@ -62,7 +62,7 @@ class LogoTurtle:
         "0011001111001100",  # 5
         "0001111111111000",  # 6
         "0000111111110000",  # 7
-        "0001111110111000",  # 8
+        "0001111111111000",  # 8
         "0001111111111000",  # 9
         "0001111111111000",  # 10
         "0001111111111000",  # 11

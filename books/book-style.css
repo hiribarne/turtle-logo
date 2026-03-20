@@ -1,8 +1,16 @@
-/* The Turtle Book — PDF stylesheet */
+/* The Turtle Book — PDF stylesheet (Lulu print-ready)
+ *
+ * Binding     : Coil bound (no spine, no gutter)
+ * Trim size   : US Letter — 8.5 × 11 in (215.9 × 279.4 mm)
+ * Interior    : 8.5 × 11 in (no bleed — no edge-to-edge content)
+ * Safety      : ≥ 0.5 in (12.7 mm) from all trim edges
+ * Bleed       : 0.125 in added automatically by Lulu (not in file)
+ * Color       : sRGB
+ */
 
 @page {
-    size: letter;
-    margin: 2.5cm 2cm 2.5cm 2cm;
+    size: 8.5in 11in;
+    margin: 0.875in 0.75in 0.875in 0.75in;
 
     @bottom-center {
         content: counter(page);
@@ -30,8 +38,8 @@ h1 {
     font-weight: 700;
     color: #1a7a3a;
     text-align: center;
-    margin-top: 3cm;
-    margin-bottom: 0.2cm;
+    margin-top: 3in;
+    margin-bottom: 0.2in;
     page-break-after: avoid;
 }
 
@@ -41,7 +49,7 @@ h1 + h3 {
     color: #555;
     text-align: center;
     margin-top: 0;
-    margin-bottom: 0.5cm;
+    margin-bottom: 0.5in;
 }
 
 h1 + h3 + p {
@@ -50,7 +58,7 @@ h1 + h3 + p {
     font-style: italic;
     font-size: 14pt;
     color: #777;
-    margin-bottom: 4cm;
+    margin-bottom: 3in;
 }
 
 h1 + h3 + p + hr {
@@ -61,40 +69,53 @@ h1 + h3 + p + hr {
     padding: 0;
 }
 
+/* ── Copyright page ───────────────────────────────────── */
+
+.copyright {
+    page: copyright;
+    margin-top: 6in;
+    font-size: 9pt;
+    color: #999;
+    text-align: center;
+    line-height: 2;
+}
+
+@page copyright {
+    @bottom-center { content: none; }
+}
+
 /* ── Chapter headings ──────────────────────────────────── */
 
 h2 {
     font-size: 20pt;
     font-weight: 700;
     color: #1a7a3a;
-    margin-top: 1.5cm;
-    margin-bottom: 0.6cm;
+    margin-top: 1in;
+    margin-bottom: 0.4in;
     page-break-before: always;
     page-break-after: avoid;
     border-bottom: 2pt solid #1a7a3a;
-    padding-bottom: 0.2cm;
+    padding-bottom: 0.2in;
 }
-
-/* The first hr after the title acts as the title page break */
 
 /* ── Horizontal rules (section dividers) ───────────────── */
 
 hr {
     border: none;
     border-top: 1pt solid #ddd;
-    margin: 1cm 0;
+    margin: 0.35in 0;
 }
 
 /* ── Body text ─────────────────────────────────────────── */
 
 p {
-    margin: 0.3cm 0;
+    margin: 0.12in 0;
     orphans: 3;
     widows: 3;
 }
 
 strong {
-    color: #1a7a3a;
+    color: #222;
 }
 
 em {
@@ -104,15 +125,16 @@ em {
 /* ── Code blocks (Logo commands) ───────────────────────── */
 
 pre {
-    background-color: #1a1a2e;
-    color: #33ff33;
+    background-color: #f5f5f5;
+    color: #222;
     font-family: "Menlo", "Courier New", monospace;
     font-size: 12pt;
-    padding: 0.5cm 0.7cm;
-    border-radius: 6pt;
-    margin: 0.4cm 0;
+    padding: 0.15in 0.4in;
+    border-left: 3pt solid #1a7a3a;
+    border-radius: 0;
+    margin: 0.15in 0;
     page-break-inside: avoid;
-    line-height: 1.5;
+    line-height: 1.4;
 }
 
 code {
@@ -132,12 +154,12 @@ pre code {
 /* ── Lists ─────────────────────────────────────────────── */
 
 ul, ol {
-    margin: 0.3cm 0;
-    padding-left: 1.2cm;
+    margin: 0.2in 0;
+    padding-left: 1in;
 }
 
 li {
-    margin: 0.15cm 0;
+    margin: 0.12in 0;
 }
 
 /* ── Tables ────────────────────────────────────────────── */
@@ -145,17 +167,18 @@ li {
 table {
     width: 100%;
     border-collapse: collapse;
-    margin: 0.5cm 0;
+    margin: 0.4in 0;
     font-size: 12pt;
     page-break-inside: avoid;
 }
 
 th {
-    background-color: #1a7a3a;
-    color: white;
+    background-color: #f0f0f0;
+    color: #222;
     padding: 6pt 10pt;
     text-align: left;
-    font-weight: 600;
+    font-weight: 700;
+    border-bottom: 1.5pt solid #333;
 }
 
 td {
@@ -164,7 +187,7 @@ td {
 }
 
 tr:nth-child(even) td {
-    background-color: #f7f7f7;
+    background-color: #fafafa;
 }
 
 /* ── Last line (Happy drawing!) ────────────────────────── */
@@ -174,5 +197,5 @@ body > p:last-child {
     font-size: 16pt;
     font-style: italic;
     color: #1a7a3a;
-    margin-top: 2cm;
+    margin-top: 2in;
 }

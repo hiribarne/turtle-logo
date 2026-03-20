@@ -67,6 +67,15 @@ When David defines a procedure with `TO ... END`, it's automatically saved to `d
 
 I wrote a 20-chapter tutorial for David in `books/logo-book.md` (also available as [a PDF](books/logo-book.pdf)). It starts with "Meet the Turtle" and builds up through squares, triangles, the shape rule (turn = 360 / sides), colors, procedures with variables, and designing custom turtle sprites. The language is written for a first grader who reads well.
 
+To regenerate the PDF:
+
+```bash
+pandoc books/logo-book.md -o /tmp/turtle-book.html --standalone
+weasyprint /tmp/turtle-book.html books/logo-book.pdf --stylesheet books/book-style.css
+```
+
+The PDF is formatted for [Lulu](https://www.lulu.com/) coil-bound printing at US Letter (8.5 × 11 in).
+
 ## Example Programs
 
 The `examples/` folder has a few Logo programs to type in:
