@@ -1,0 +1,30 @@
+---
+layout: layouts/base.njk
+---
+{% block head %}
+<link rel="stylesheet" href="/assets/css/book.css">
+{% endblock %}
+
+{% block body %}
+<div class="chapter-content">
+  <h1>{{ title }}</h1>
+  {{ content | safe }}
+
+  <div class="chapter-nav">
+    {% if prev %}
+      <a href="/book/{{ prev.slug }}/">&larr; {{ prev.title }}</a>
+    {% else %}
+      <span></span>
+    {% endif %}
+    {% if next %}
+      <a href="/book/{{ next.slug }}/">{{ next.title }} &rarr;</a>
+    {% else %}
+      <a href="/book/">Back to Table of Contents</a>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script type="module" src="/assets/js/code-block.js"></script>
+{% endblock %}

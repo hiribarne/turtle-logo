@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chapter 5: REPEAT — Turtle Logo</title>
+  <meta name="description" content="The Turtle Book — Chapter 5: REPEAT">
+  <link rel="stylesheet" href="/assets/css/base.css">
+  <link rel="stylesheet" href="/assets/css/book.css">
+</head>
+<body>
+  <nav class="site-nav">
+  <a class="nav-brand" href="/">Turtle Logo</a>
+  <a href="/book/">The Turtle Book</a>
+  <a href="/play/">Play</a>
+</nav>
+
+
+  <div class="chapter-layout">
+    
+    
+    <div class="chapter-turtle">
+      <div class="chapter-canvas-wrap" id="chapter-canvas-wrap">
+        <canvas id="chapter-drawing"></canvas>
+        <canvas id="chapter-sprite"></canvas>
+      </div>
+      <script>
+        // Size canvases to match their CSS-rendered size so 1 Logo unit = 1 pixel
+        (function() {
+          var wrap = document.getElementById('chapter-canvas-wrap');
+          var w = wrap.clientWidth, h = wrap.clientHeight;
+          ['chapter-drawing','chapter-sprite'].forEach(function(id) {
+            var c = document.getElementById(id);
+            c.width = w; c.height = h;
+          });
+        })();
+      </script>
+      <div class="chapter-turtle-bar">
+        <div class="chapter-output" id="chapter-output"></div>
+        <button class="chapter-reset-btn" id="chapter-reset" title="Clear screen and reset turtle">Reset</button>
+      </div>
+    </div>
+    
+
+    
+    <div class="chapter-content">
+      <h1>Chapter 5: REPEAT</h1>
+      <p>Typing the same thing four times is a lot of work.</p>
+<p>Logo has a shortcut called <strong>REPEAT</strong>.</p>
+<div class="logo-block logo-block--multi" data-code="CS
+REPEAT 4 [FD 80 RT 90]">
+  <div class="logo-lines">
+    <div class="logo-line" data-code="CS">
+      <code>CS</code>
+      <button class="logo-run-line" title="Run this line">&#9654;</button>
+    </div>
+    <div class="logo-line" data-code="REPEAT 4 [FD 80 RT 90]">
+      <code>REPEAT 4 [FD 80 RT 90]</code>
+      <button class="logo-run-line" title="Run this line">&#9654;</button>
+    </div>
+  </div>
+  <div class="logo-toolbar">
+    <button class="logo-run-btn" title="Run all lines">Run All</button>
+  </div>
+</div>
+<p>That draws the same square — in one line!</p>
+<p>Here is how <strong>REPEAT</strong> works:</p>
+<ul>
+<li>The <strong>number</strong> says how many times.</li>
+<li>The <strong>[ ]</strong> holds the commands to repeat.</li>
+</ul>
+<p>Try a big square:</p>
+<div class="logo-block logo-block--multi" data-code="CS
+REPEAT 4 [FD 150 RT 90]">
+  <div class="logo-lines">
+    <div class="logo-line" data-code="CS">
+      <code>CS</code>
+      <button class="logo-run-line" title="Run this line">&#9654;</button>
+    </div>
+    <div class="logo-line" data-code="REPEAT 4 [FD 150 RT 90]">
+      <code>REPEAT 4 [FD 150 RT 90]</code>
+      <button class="logo-run-line" title="Run this line">&#9654;</button>
+    </div>
+  </div>
+  <div class="logo-toolbar">
+    <button class="logo-run-btn" title="Run all lines">Run All</button>
+  </div>
+</div>
+<p>Try a tiny square:</p>
+<div class="logo-block logo-block--multi" data-code="CS
+REPEAT 4 [FD 30 RT 90]">
+  <div class="logo-lines">
+    <div class="logo-line" data-code="CS">
+      <code>CS</code>
+      <button class="logo-run-line" title="Run this line">&#9654;</button>
+    </div>
+    <div class="logo-line" data-code="REPEAT 4 [FD 30 RT 90]">
+      <code>REPEAT 4 [FD 30 RT 90]</code>
+      <button class="logo-run-line" title="Run this line">&#9654;</button>
+    </div>
+  </div>
+  <div class="logo-toolbar">
+    <button class="logo-run-btn" title="Run all lines">Run All</button>
+  </div>
+</div>
+<hr>
+
+
+      <div class="chapter-nav">
+        
+          <a href="/book/chapter-4-a-square/">&larr; Chapter 4: A Square</a>
+        
+        
+          <a href="/book/chapter-6-a-triangle/">Chapter 6: A Triangle &rarr;</a>
+        
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">Turtle Logo &copy; 2026</footer>
+  
+  <script type="module" src="/assets/js/code-block.js"></script>
+  
+</body>
+</html>

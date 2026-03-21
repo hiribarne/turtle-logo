@@ -1,4 +1,4 @@
-# David Logo
+# Turtle Logo
 
 > A Python Logo interpreter inspired by MSX Logo, built for a first grader learning geometry.
 
@@ -8,9 +8,9 @@ I grew up with MSX Logo in the 1980s — typing `FD 100 RT 90` and watching a tu
 
 My son David is in first grade, learning geometry. He already loves Scratch and Minecraft, so he's comfortable with a computer. I wanted to give him the same experience I had: a simple command line, a turtle that listens, and the thrill of making shapes appear on screen by typing code.
 
-David Logo is my attempt to recreate that. It's a single Python script that opens one window — drawing canvas on top, command line on the bottom — just like the original MSX Logo. The turtle sprite is a 16x16 pixel bitmap, the heading convention is classic Logo (0° = north), and the error messages are kid-friendly. Everything runs on a Raspberry Pi, a Mac, or any machine with Python 3.
+Turtle Logo is my attempt to recreate that. It's a single Python script that opens one window — drawing canvas on top, command line on the bottom — just like the original MSX Logo. The turtle sprite is a 16x16 pixel bitmap, the heading convention is classic Logo (0° = north), and the error messages are kid-friendly. Everything runs on a Raspberry Pi, a Mac, or any machine with Python 3.
 
-![David Logo](screenshot.jpeg)
+![Turtle Logo](screenshot.jpeg)
 
 ## How to Run
 
@@ -61,11 +61,11 @@ The turtle is a 16x16 pixel bitmap rendered as small squares, in the style of MS
 
 ## Persistent Procedures
 
-When David defines a procedure with `TO ... END`, it's automatically saved to `david-procs.logo` and reloaded next time he starts the program. No work is lost between sessions. `PROCS` lists them, `FORGET` deletes one.
+When you define a procedure with `TO ... END`, it's automatically saved to `david-procs.logo` and reloaded next time you start the program. No work is lost between sessions. `PROCS` lists them, `FORGET` deletes one.
 
 ## The Turtle Book
 
-I wrote a 20-chapter tutorial for David in `books/logo-book.md` (also available as [a PDF](books/logo-book.pdf)). It starts with "Meet the Turtle" and builds up through squares, triangles, the shape rule (turn = 360 / sides), colors, procedures with variables, and designing custom turtle sprites. The language is written for a first grader who reads well.
+I wrote a 20-chapter tutorial in `books/logo-book.md` (also available as [a PDF](books/logo-book.pdf)). It starts with "Meet the Turtle" and builds up through squares, triangles, the shape rule (turn = 360 / sides), colors, procedures with variables, and designing custom turtle sprites. The language is written for a first grader who reads well.
 
 To regenerate the PDF:
 
@@ -88,7 +88,7 @@ The `examples/` folder has a few Logo programs to type in:
 
 - **Logo language** — Seymour Papert, Wally Feurzeig, Cynthia Solomon (MIT, 1967)
 - **MSX Logo** — Logo Computer Systems Inc. / LCSI (Microsoft/ASCII Corporation, 1980s)
-- **David Logo** — Roberto Hiribarne, 2026
+- **Turtle Logo** — Roberto Hiribarne, 2026
 
 ## License
 

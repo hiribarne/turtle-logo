@@ -1,0 +1,142 @@
+/* Turtle Logo — Base Styles */
+
+:root {
+  --bg-dark: #1a1a2e;
+  --bg-darker: #0a0a1a;
+  --text: #e0e0e0;
+  --accent: #32cd32;
+  --accent-dim: #228b22;
+  --border: #333333;
+  --font-mono: 'Menlo', 'Consolas', 'Courier New', monospace;
+  --font-body: 'Georgia', 'Times New Roman', serif;
+  --max-width: 800px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 18px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-dark);
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* -- Navigation -- */
+
+.site-nav {
+  background: var(--bg-darker);
+  border-bottom: 1px solid var(--border);
+  padding: 0.6rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.site-nav .nav-brand {
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--accent);
+}
+
+.site-nav a {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text);
+}
+.site-nav a:hover {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+/* -- Footer -- */
+
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 1.5rem 1rem;
+  text-align: center;
+  font-size: 0.8rem;
+  color: #888;
+  font-family: var(--font-mono);
+}
+
+/* -- Container -- */
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+/* -- Shape editor overlay (shared by playground + book) -- */
+
+.shape-editor-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.shape-editor-panel {
+  background: var(--bg-dark);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.shape-editor-panel h3 {
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.shape-editor-canvas {
+  display: block;
+  margin: 0 auto;
+  cursor: crosshair;
+}
+
+.shape-editor-buttons {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-top: 0.75rem;
+}
+
+.shape-editor-buttons button {
+  background: #333;
+  color: var(--accent);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0.3rem 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+.shape-editor-buttons button:hover {
+  background: #555;
+  color: #fff;
+}

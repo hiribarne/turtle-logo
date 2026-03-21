@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chapter 9: Change Colors — Turtle Logo</title>
+  <meta name="description" content="The Turtle Book — Chapter 9: Change Colors">
+  <link rel="stylesheet" href="/assets/css/base.css">
+  <link rel="stylesheet" href="/assets/css/book.css">
+</head>
+<body>
+  <nav class="site-nav">
+  <a class="nav-brand" href="/">Turtle Logo</a>
+  <a href="/book/">The Turtle Book</a>
+  <a href="/play/">Play</a>
+</nav>
+
+
+  <div class="chapter-layout">
+    
+    
+    <div class="chapter-turtle">
+      <div class="chapter-canvas-wrap" id="chapter-canvas-wrap">
+        <canvas id="chapter-drawing"></canvas>
+        <canvas id="chapter-sprite"></canvas>
+      </div>
+      <script>
+        // Size canvases to match their CSS-rendered size so 1 Logo unit = 1 pixel
+        (function() {
+          var wrap = document.getElementById('chapter-canvas-wrap');
+          var w = wrap.clientWidth, h = wrap.clientHeight;
+          ['chapter-drawing','chapter-sprite'].forEach(function(id) {
+            var c = document.getElementById(id);
+            c.width = w; c.height = h;
+          });
+        })();
+      </script>
+      <div class="chapter-turtle-bar">
+        <div class="chapter-output" id="chapter-output"></div>
+        <button class="chapter-reset-btn" id="chapter-reset" title="Clear screen and reset turtle">Reset</button>
+      </div>
+    </div>
+    
+
+    
+    <div class="chapter-content">
+      <h1>Chapter 9: Change Colors</h1>
+      <p>The turtle always draws in green.
+But you can change the color!</p>
+<div class="logo-block" data-code="SETPC 1">
+  <pre><code>SETPC 1</code></pre>
+  <div class="logo-toolbar">
+    <button class="logo-run-btn" title="Run this block">Run</button>
+  </div>
+</div>
+<p><strong>SETPC</strong> means <strong>set pen color</strong>.
+The number picks a color.</p>
+<p>Try these:</p>
+<ul>
+<li><strong>SETPC 0</strong> — white</li>
+<li><strong>SETPC 1</strong> — red</li>
+<li><strong>SETPC 2</strong> — green</li>
+<li><strong>SETPC 3</strong> — yellow</li>
+<li><strong>SETPC 4</strong> — cyan (blue-green)</li>
+<li><strong>SETPC 5</strong> — pink</li>
+<li><strong>SETPC 6</strong> — orange</li>
+<li><strong>SETPC 7</strong> — sky blue</li>
+</ul>
+<p>Draw a red square:</p>
+<div class="logo-block logo-block--multi" data-code="CS
+SETPC 1
+REPEAT 4 [FD 80 RT 90]">
+  <div class="logo-lines">
+    <div class="logo-line" data-code="CS">
+      <code>CS</code>
+      <button class="logo-run-line" title="Run this line">&#9654;</button>
+    </div>
+    <div class="logo-line" data-code="SETPC 1">
+      <code>SETPC 1</code>
+      <button class="logo-run-line" title="Run this line">&#9654;</button>
+    </div>
+    <div class="logo-line" data-code="REPEAT 4 [FD 80 RT 90]">
+      <code>REPEAT 4 [FD 80 RT 90]</code>
+      <button class="logo-run-line" title="Run this line">&#9654;</button>
+    </div>
+  </div>
+  <div class="logo-toolbar">
+    <button class="logo-run-btn" title="Run all lines">Run All</button>
+  </div>
+</div>
+<p>Draw a yellow triangle:</p>
+<div class="logo-block logo-block--multi" data-code="CS
+SETPC 3
+REPEAT 3 [FD 80 RT 120]">
+  <div class="logo-lines">
+    <div class="logo-line" data-code="CS">
+      <code>CS</code>
+      <button class="logo-run-line" title="Run this line">&#9654;</button>
+    </div>
+    <div class="logo-line" data-code="SETPC 3">
+      <code>SETPC 3</code>
+      <button class="logo-run-line" title="Run this line">&#9654;</button>
+    </div>
+    <div class="logo-line" data-code="REPEAT 3 [FD 80 RT 120]">
+      <code>REPEAT 3 [FD 80 RT 120]</code>
+      <button class="logo-run-line" title="Run this line">&#9654;</button>
+    </div>
+  </div>
+  <div class="logo-toolbar">
+    <button class="logo-run-btn" title="Run all lines">Run All</button>
+  </div>
+</div>
+<hr>
+
+
+      <div class="chapter-nav">
+        
+          <a href="/book/chapter-8-a-circle-almost/">&larr; Chapter 8: A Circle (Almost!)</a>
+        
+        
+          <a href="/book/chapter-10-background-colors/">Chapter 10: Background Colors &rarr;</a>
+        
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">Turtle Logo &copy; 2026</footer>
+  
+  <script type="module" src="/assets/js/code-block.js"></script>
+  
+</body>
+</html>

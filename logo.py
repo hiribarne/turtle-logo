@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-David Logo
+Turtle Logo
 A Logo interpreter with turtle graphics — all in one window.
 Canvas on top, command line on the bottom, like MSX Logo.
 """
@@ -689,7 +689,7 @@ def execute(tokens, app, local_vars=None):
                 show_help(None, app)
 
         elif cmd == 'BYE':
-            app.print_output("Bye, David! Great drawing!")
+            app.print_output("Bye! Great drawing!")
             app.root.after(800, app.root.destroy)
             return
 
@@ -826,7 +826,7 @@ class LogoApp:
 
     def __init__(self):
         self.root = tk.Tk()
-        self.root.title("David Logo")
+        self.root.title("Turtle Logo")
         self.root.configure(bg="#1a1a2e")
         self.root.geometry("800x700")
 
@@ -920,7 +920,7 @@ class LogoApp:
 
     def _startup(self):
         """Print banner and load saved procedures."""
-        self.print_output("David Logo \u2014 David's Turtle is ready.")
+        self.print_output("Turtle Logo \u2014 Your Turtle is ready.")
         self.print_output("Type HELP to see commands. Type BYE to quit.")
         load_shapes()
         messages = load_procedures()

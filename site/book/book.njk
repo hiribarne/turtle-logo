@@ -1,0 +1,74 @@
+---
+pagination:
+  data: chapters
+  size: 1
+  alias: chapter
+permalink: "book/{{ chapter.slug }}/"
+eleventyComputed:
+  title: "{{ chapter.title }}"
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ chapter.title }} — Turtle Logo</title>
+  <meta name="description" content="The Turtle Book — {{ chapter.title }}">
+  <link rel="stylesheet" href="/assets/css/base.css">
+  <link rel="stylesheet" href="/assets/css/book.css">
+</head>
+<body>
+  {% include "partials/nav.njk" %}
+
+  <div class="chapter-layout">
+    {% if chapter.hasCode %}
+    {# Shared turtle canvas — sticky at top #}
+    <div class="chapter-turtle">
+      <div class="chapter-canvas-wrap" id="chapter-canvas-wrap">
+        <canvas id="chapter-drawing"></canvas>
+        <canvas id="chapter-sprite"></canvas>
+      </div>
+      <script>
+        // Size canvases to match their CSS-rendered size so 1 Logo unit = 1 pixel
+        (function() {
+          var wrap = document.getElementById('chapter-canvas-wrap');
+          var w = wrap.clientWidth, h = wrap.clientHeight;
+          ['chapter-drawing','chapter-sprite'].forEach(function(id) {
+            var c = document.getElementById(id);
+            c.width = w; c.height = h;
+          });
+        })();
+      </script>
+      <div class="chapter-turtle-bar">
+        <div class="chapter-output" id="chapter-output"></div>
+        <button class="chapter-reset-btn" id="chapter-reset" title="Clear screen and reset turtle">Reset</button>
+      </div>
+    </div>
+    {% endif %}
+
+    {# Chapter text + inline code blocks #}
+    <div class="chapter-content">
+      <h1>{{ chapter.title }}</h1>
+      {{ chapter.html | safe }}
+
+      <div class="chapter-nav">
+        {% if chapter.prev %}
+          <a href="/book/{{ chapter.prev.slug }}/">&larr; {{ chapter.prev.title }}</a>
+        {% else %}
+          <span></span>
+        {% endif %}
+        {% if chapter.next %}
+          <a href="/book/{{ chapter.next.slug }}/">{{ chapter.next.title }} &rarr;</a>
+        {% else %}
+          <a href="/book/">Back to Table of Contents</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">Turtle Logo &copy; 2026</footer>
+  {% if chapter.hasCode %}
+  <script type="module" src="/assets/js/code-block.js"></script>
+  {% endif %}
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ title }} — Turtle Logo</title>
+  <meta name="description" content="{{ description or 'A Logo interpreter for kids — learn to draw with code!' }}">
+  <meta property="og:title" content="{{ title }} — Turtle Logo">
+  <meta property="og:description" content="{{ description or 'A Logo interpreter for kids — learn to draw with code!' }}">
+  <meta property="og:type" content="website">
+  <link rel="stylesheet" href="/assets/css/base.css">
+  {% block head %}{% endblock %}
+</head>
+<body>
+  {% include "partials/nav.njk" %}
+  {% block body %}
+    <main class="container">
+      {{ content | safe }}
+    </main>
+  {% endblock %}
+  <footer class="site-footer">Turtle Logo &copy; 2026</footer>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

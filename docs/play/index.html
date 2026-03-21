@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Play — Turtle Logo</title>
+  <meta name="description" content="A browser-based Logo interpreter — draw with code!">
+  <link rel="stylesheet" href="/assets/css/base.css">
+  <link rel="stylesheet" href="/assets/css/playground.css">
+</head>
+<body>
+  <nav class="site-nav">
+  <a class="nav-brand" href="/">Turtle Logo</a>
+  <a href="/book/">The Turtle Book</a>
+  <a href="/play/">Play</a>
+</nav>
+
+  <div class="playground-layout">
+    <div id="canvas-wrap">
+      <canvas id="drawing-canvas"></canvas>
+      <canvas id="sprite-canvas"></canvas>
+    </div>
+    <div id="output"></div>
+    <div class="input-row">
+      <span class="prompt">?&gt;</span>
+      <input type="text" id="cmd-input" autocomplete="off" autocapitalize="off" spellcheck="false" autofocus>
+    </div>
+  </div>
+  <script>
+    // Size canvases to match container, with DPR scaling for sharpness.
+    // Stores logical (CSS-pixel) dimensions for the turtle to read.
+    function sizeCanvases() {
+      const wrap = document.getElementById('canvas-wrap');
+      const w = wrap.clientWidth;
+      const h = wrap.clientHeight;
+      const dpr = window.devicePixelRatio || 1;
+      window._canvasLogicalWidth = w;
+      window._canvasLogicalHeight = h;
+      for (const id of ['drawing-canvas', 'sprite-canvas']) {
+        const c = document.getElementById(id);
+        c.width = w * dpr;
+        c.height = h * dpr;
+        c.getContext('2d').setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+    }
+    sizeCanvases();
+    window.addEventListener('resize', () => {
+      sizeCanvases();
+      if (window._logoRuntime) {
+        window._logoRuntime.turtle.setLogicalSize(window._canvasLogicalWidth, window._canvasLogicalHeight);
+        window._logoRuntime.turtle._drawCursor();
+      }
+    });
+  </script>
+  <script type="module" src="/assets/js/playground.js"></script>
+</body>
+</html>

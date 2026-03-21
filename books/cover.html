@@ -3,14 +3,20 @@
 <head>
 <meta charset="utf-8">
 <style>
-/* Lulu coil-bound cover: US Letter
- * Total with bleed: 17.25 × 11.25 in
- * Each half: 8.625 in wide (8.5 trim + 0.125 bleed)
- * Safety: 0.5 in from trim = 0.625 in from doc edge
- * No spine (coil bound)
+/* Lulu hardcover case wrap cover: US Letter
+ * Total with wrap: 19 × 12.75 in (482.6 × 323.85 mm)
+ * Book trim: 8.75 × 11.5 in per panel
+ * Spine: 0.25 in (28 pages)
+ * Wrap area: 0.625 in on all edges
+ * Safety: 0.625 in from wrap/document edge
+ *
+ * Layout (left to right):
+ *   0.625 wrap | 8.75 back | 0.25 spine | 8.75 front | 0.625 wrap
+ * Layout (top to bottom):
+ *   0.625 wrap | 11.5 cover | 0.625 wrap
  */
 @page {
-    size: 17.25in 11.25in;
+    size: 19in 12.75in;
     margin: 0;
 }
 
@@ -18,28 +24,29 @@
 
 body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    width: 17.25in;
-    height: 11.25in;
+    width: 19in;
+    height: 12.75in;
     position: relative;
     background: white;
 }
 
-/* ── Front cover (right half) ──────────────────── */
+/* ── Front cover (right panel) ─────────────────── */
+/* Starts at x = 0.625 + 8.75 + 0.25 = 9.625 in */
 
 .front {
     position: absolute;
-    top: 0;
-    right: 0;
-    width: 8.625in;
-    height: 11.25in;
+    top: 0.625in;
+    left: 9.625in;
+    width: 8.75in;
+    height: 11.5in;
 }
 
 .front-content {
     position: absolute;
-    top: 0.625in;
+    top: 0.5in;
     left: 0.5in;
-    right: 0.625in;
-    bottom: 0.625in;
+    right: 0.5in;
+    bottom: 0.5in;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -78,7 +85,7 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    height: 0.2in;
+    height: 0.15in;
     background: #1a7a3a;
 }
 
@@ -87,26 +94,27 @@ body {
     bottom: 0;
     left: 0;
     right: 0;
-    height: 0.2in;
+    height: 0.15in;
     background: #1a7a3a;
 }
 
-/* ── Back cover (left half) ────────────────────── */
+/* ── Back cover (left panel) ───────────────────── */
+/* Starts at x = 0.625 in, width = 8.75 in */
 
 .back {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 8.625in;
-    height: 11.25in;
+    top: 0.625in;
+    left: 0.625in;
+    width: 8.75in;
+    height: 11.5in;
 }
 
 .back-content {
     position: absolute;
-    top: 0.625in;
-    left: 0.625in;
+    top: 0.5in;
+    left: 0.5in;
     right: 0.5in;
-    bottom: 0.625in;
+    bottom: 0.5in;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -143,7 +151,7 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    height: 0.2in;
+    height: 0.15in;
     background: #1a7a3a;
 }
 
@@ -152,24 +160,35 @@ body {
     bottom: 0;
     left: 0;
     right: 0;
-    height: 0.2in;
+    height: 0.15in;
     background: #1a7a3a;
 }
 
-/* Barcode area placeholder — bottom-left of back cover */
+/* Barcode area — bottom of back cover, 0.625 in from spine edge */
 .barcode-area {
     position: absolute;
     bottom: 0.625in;
-    left: 0.625in;
+    right: 0.625in;
     width: 3.622in;
     height: 1.26in;
-    /* Leave empty for Lulu barcode */
+}
+
+/* ── Spine ─────────────────────────────────────── */
+/* x = 0.625 + 8.75 = 9.375 in, width = 0.25 in */
+
+.spine {
+    position: absolute;
+    top: 0.625in;
+    left: 9.375in;
+    width: 0.25in;
+    height: 11.5in;
+    background: #1a7a3a;
 }
 </style>
 </head>
 <body>
 
-<!-- Back cover (left half) -->
+<!-- Back cover -->
 <div class="back">
     <div class="back-accent-top"></div>
     <div class="back-accent-bottom"></div>
@@ -196,7 +215,10 @@ body {
     <div class="barcode-area"></div>
 </div>
 
-<!-- Front cover (right half) -->
+<!-- Spine -->
+<div class="spine"></div>
+
+<!-- Front cover -->
 <div class="front">
     <div class="front-accent-top"></div>
     <div class="front-accent-bottom"></div>

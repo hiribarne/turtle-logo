@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chapter 17: A Pattern — Turtle Logo</title>
+  <meta name="description" content="The Turtle Book — Chapter 17: A Pattern">
+  <link rel="stylesheet" href="/assets/css/base.css">
+  <link rel="stylesheet" href="/assets/css/book.css">
+</head>
+<body>
+  <nav class="site-nav">
+  <a class="nav-brand" href="/">Turtle Logo</a>
+  <a href="/book/">The Turtle Book</a>
+  <a href="/play/">Play</a>
+</nav>
+
+
+  <div class="chapter-layout">
+    
+    
+    <div class="chapter-turtle">
+      <div class="chapter-canvas-wrap" id="chapter-canvas-wrap">
+        <canvas id="chapter-drawing"></canvas>
+        <canvas id="chapter-sprite"></canvas>
+      </div>
+      <script>
+        // Size canvases to match their CSS-rendered size so 1 Logo unit = 1 pixel
+        (function() {
+          var wrap = document.getElementById('chapter-canvas-wrap');
+          var w = wrap.clientWidth, h = wrap.clientHeight;
+          ['chapter-drawing','chapter-sprite'].forEach(function(id) {
+            var c = document.getElementById(id);
+            c.width = w; c.height = h;
+          });
+        })();
+      </script>
+      <div class="chapter-turtle-bar">
+        <div class="chapter-output" id="chapter-output"></div>
+        <button class="chapter-reset-btn" id="chapter-reset" title="Clear screen and reset turtle">Reset</button>
+      </div>
+    </div>
+    
+
+    
+    <div class="chapter-content">
+      <h1>Chapter 17: A Pattern</h1>
+      <p>Let's put it all together and make something amazing.</p>
+<p>First, make sure you have SQUARE:</p>
+<div class="logo-block" data-code="TO SQUARE :SIZE
+REPEAT 4 [FD :SIZE RT 90]
+END">
+  <pre><code>TO SQUARE :SIZE
+REPEAT 4 [FD :SIZE RT 90]
+END</code></pre>
+  <div class="logo-toolbar">
+    <button class="logo-run-btn" title="Run this block">Run</button>
+  </div>
+</div>
+<p>Now draw lots of squares, turning a little each time:</p>
+<div class="logo-block logo-block--multi" data-code="CS
+REPEAT 36 [SQUARE 80 RT 10]">
+  <div class="logo-lines">
+    <div class="logo-line" data-code="CS">
+      <code>CS</code>
+      <button class="logo-run-line" title="Run this line">&#9654;</button>
+    </div>
+    <div class="logo-line" data-code="REPEAT 36 [SQUARE 80 RT 10]">
+      <code>REPEAT 36 [SQUARE 80 RT 10]</code>
+      <button class="logo-run-line" title="Run this line">&#9654;</button>
+    </div>
+  </div>
+  <div class="logo-toolbar">
+    <button class="logo-run-btn" title="Run all lines">Run All</button>
+  </div>
+</div>
+<p>Wow! A beautiful pattern made of 36 squares!</p>
+<p>Try changing the colors:</p>
+<div class="logo-block logo-block--multi" data-code="CS
+SETPC 1
+REPEAT 18 [SQUARE 80 RT 20]
+SETPC 4
+REPEAT 18 [SQUARE 60 RT 20]">
+  <div class="logo-lines">
+    <div class="logo-line" data-code="CS">
+      <code>CS</code>
+      <button class="logo-run-line" title="Run this line">&#9654;</button>
+    </div>
+    <div class="logo-line" data-code="SETPC 1">
+      <code>SETPC 1</code>
+      <button class="logo-run-line" title="Run this line">&#9654;</button>
+    </div>
+    <div class="logo-line" data-code="REPEAT 18 [SQUARE 80 RT 20]">
+      <code>REPEAT 18 [SQUARE 80 RT 20]</code>
+      <button class="logo-run-line" title="Run this line">&#9654;</button>
+    </div>
+    <div class="logo-line" data-code="SETPC 4">
+      <code>SETPC 4</code>
+      <button class="logo-run-line" title="Run this line">&#9654;</button>
+    </div>
+    <div class="logo-line" data-code="REPEAT 18 [SQUARE 60 RT 20]">
+      <code>REPEAT 18 [SQUARE 60 RT 20]</code>
+      <button class="logo-run-line" title="Run this line">&#9654;</button>
+    </div>
+  </div>
+  <div class="logo-toolbar">
+    <button class="logo-run-btn" title="Run all lines">Run All</button>
+  </div>
+</div>
+<hr>
+
+
+      <div class="chapter-nav">
+        
+          <a href="/book/chapter-16-a-command-with-a-size/">&larr; Chapter 16: A Command with a Size</a>
+        
+        
+          <a href="/book/chapter-18-hide-and-show-the-turtle/">Chapter 18: Hide and Show the Turtle &rarr;</a>
+        
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">Turtle Logo &copy; 2026</footer>
+  
+  <script type="module" src="/assets/js/code-block.js"></script>
+  
+</body>
+</html>

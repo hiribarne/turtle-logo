@@ -1,0 +1,80 @@
+/* Turtle Logo — Playground (dark theme, matches Python app) */
+
+.playground-layout {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 42px); /* subtract nav height */
+  overflow: hidden;
+}
+
+/* -- Canvas area -- */
+
+#canvas-wrap {
+  flex: 3;
+  position: relative;
+  background: #000000;
+  border: 1px solid var(--border);
+  margin: 4px;
+  min-height: 200px;
+}
+
+#canvas-wrap canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* -- Output area -- */
+
+#output {
+  flex: 1;
+  background: var(--bg-darker);
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  padding: 0.5rem;
+  overflow-y: auto;
+  border-top: 1px solid var(--border);
+  margin: 0 4px;
+  min-height: 80px;
+  max-height: 200px;
+}
+
+#output div {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* -- Input area -- */
+
+.input-row {
+  display: flex;
+  align-items: center;
+  background: var(--bg-darker);
+  border-top: 1px solid var(--border);
+  padding: 0.3rem 0.5rem;
+  margin: 0 4px 4px 4px;
+}
+
+.input-row .prompt {
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  margin-right: 0.3rem;
+  user-select: none;
+}
+
+#cmd-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  caret-color: #ffffff;
+}
+
+/* Shape editor styles are in base.css */

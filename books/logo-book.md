@@ -1,12 +1,12 @@
 # The Turtle Book
-### Learn to Draw with David Logo
+### Learn to Draw with Turtle Logo
 
 *For David*
 
 ---
 
 <div class="copyright">
-<p>David Logo — The Turtle Book</p>
+<p>Turtle Logo — The Turtle Book</p>
 <p>Copyright © 2026</p>
 <p>For personal and educational use.</p>
 <p>Made with <img src="emoji-turtle.svg" style="height:1.4em;vertical-align:-0.25em"> <img src="emoji-heart.svg" style="height:1.4em;vertical-align:-0.25em"> for David.</p>
@@ -15,7 +15,7 @@
 ## Meet the Turtle
 
 There is a turtle on your screen.
-His name is David's Turtle.
+His name is Your Turtle.
 
 The turtle can walk.
 The turtle can turn.
@@ -472,7 +472,7 @@ SQUARE
 The turtle draws a square!
 You just made a new word that Logo understands.
 
-Logo saves your commands, so next time you start David Logo, **SQUARE** will still work!
+Logo saves your commands, so next time you start Turtle Logo, **SQUARE** will still work!
 
 ---
 
