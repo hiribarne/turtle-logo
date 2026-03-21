@@ -1,27 +1,47 @@
 # Turtle Logo
 
-> A Python Logo interpreter inspired by MSX Logo, built for a first grader learning geometry.
+> A Logo interpreter for kids — runs in the browser and as a desktop app.
+
+## Try It
+
+**[Play in your browser](https://hiribarne.github.io/turtle-logo/play/)** — no install needed.
+
+**[Read the Turtle Book](https://hiribarne.github.io/turtle-logo/book/)** — a 20-chapter interactive tutorial with runnable code blocks.
 
 ## About
 
 I grew up with MSX Logo in the 1980s — typing `FD 100 RT 90` and watching a turtle draw squares on the screen. It's how I first understood what an angle was.
 
-My son David is in first grade, learning geometry. He already loves Scratch and Minecraft, so he's comfortable with a computer. I wanted to give him the same experience I had: a simple command line, a turtle that listens, and the thrill of making shapes appear on screen by typing code.
+My son David is in first grade, learning geometry. I wanted to give him the same experience I had: a simple command line, a turtle that listens, and the thrill of making shapes appear on screen by typing code.
 
-Turtle Logo is my attempt to recreate that. It's a single Python script that opens one window — drawing canvas on top, command line on the bottom — just like the original MSX Logo. The turtle sprite is a 16x16 pixel bitmap, the heading convention is classic Logo (0° = north), and the error messages are kid-friendly. Everything runs on a Raspberry Pi, a Mac, or any machine with Python 3.
+Turtle Logo is my attempt to recreate that. It comes in two forms:
+
+- **Website** — a browser-based interpreter and interactive tutorial, hosted on GitHub Pages
+- **Desktop app** — a single Python script with a tkinter GUI, like the original MSX Logo
 
 ![Turtle Logo](screenshot.jpeg)
 
-## How to Run
+## Website
+
+The website at [hiribarne.github.io/turtle-logo](https://hiribarne.github.io/turtle-logo/) has three parts:
+
+- **Playground** (`/play/`) — full interpreter with command input, history, shape editor, and localStorage persistence
+- **The Turtle Book** (`/book/`) — 20 chapters with interactive code blocks. Each chapter has a shared interpreter with a sticky canvas; you can run commands one at a time or all at once. Procedures persist across chapters.
+- **Landing page** — links to both
+
+### Building the site
+
+```bash
+cd site
+npm install
+npm run build     # outputs to docs/
+npm run dev       # local dev server at localhost:8080
+```
+
+## Desktop App
 
 ```bash
 python3 logo.py
-```
-
-Or use the launch script:
-
-```bash
-./logo.sh
 ```
 
 Requires Python 3 with tkinter. On Raspberry Pi OS and most Linux distributions this is included by default. On macOS with Homebrew: `brew install python-tk@3.14` (match your Python version).
@@ -46,43 +66,21 @@ Requires Python 3 with tkinter. On Raspberry Pi OS and most Linux distributions 
 | TO name ... END | Define a procedure |
 | FORGET name | Delete a procedure |
 | PROCS | List saved procedures |
-| EDITSHAPE | Open the 16x16 pixel shape editor |
-| EDITSHAPE name | Create/edit a named shape |
-| SETSHAPE name | Switch to a saved shape |
-| SETSHAPE TURTLE | Back to the default turtle |
+| EDITSHAPE name | Design a turtle sprite |
+| SETSHAPE name | Use a saved shape |
 | SHAPES | List saved shapes |
 | DEMO | Watch a colorful pattern |
 | HELP | See all commands |
 | BYE | Quit |
 
-## Turtle Sprite
-
-The turtle is a 16x16 pixel bitmap rendered as small squares, in the style of MSX Logo. You can design your own sprites with the `EDITSHAPE` command — it opens a visual grid editor where you click cells to toggle pixels and drag to paint. Shapes are saved to `david-shapes.json` and persist between sessions. Type `SETSHAPE TURTLE` to go back to the default.
-
-## Persistent Procedures
-
-When you define a procedure with `TO ... END`, it's automatically saved to `david-procs.logo` and reloaded next time you start the program. No work is lost between sessions. `PROCS` lists them, `FORGET` deletes one.
-
 ## The Turtle Book
 
-I wrote a 20-chapter tutorial in `books/logo-book.md` (also available as [a PDF](books/logo-book.pdf)). It starts with "Meet the Turtle" and builds up through squares, triangles, the shape rule (turn = 360 / sides), colors, procedures with variables, and designing custom turtle sprites. The language is written for a first grader who reads well.
+A 20-chapter tutorial that starts with "Meet the Turtle" and builds up through squares, triangles, the shape rule (turn = 360 / sides), colors, procedures with variables, and designing custom turtle sprites. Written for a first grader who reads well.
 
-To regenerate the PDF:
-
-```bash
-pandoc books/logo-book.md -o /tmp/turtle-book.html --standalone
-weasyprint /tmp/turtle-book.html books/logo-book.pdf --stylesheet books/book-style.css
-```
-
-The PDF is formatted for [Lulu](https://www.lulu.com/) coil-bound printing at US Letter (8.5 × 11 in).
-
-## Example Programs
-
-The `examples/` folder has a few Logo programs to type in:
-
-- `square.logo` — rotating colored squares
-- `star.logo` — five-pointed stars
-- `snowflake.logo` — a six-armed snowflake
+Available as:
+- **[Interactive web version](https://hiribarne.github.io/turtle-logo/book/)** with runnable code blocks
+- **[PDF](books/logo-book.pdf)** formatted for Lulu coil-bound printing (US Letter)
+- **[Markdown source](books/logo-book.md)**
 
 ## Credits
 
