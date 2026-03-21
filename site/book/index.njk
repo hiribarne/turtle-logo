@@ -3,7 +3,7 @@ layout: layouts/base.njk
 title: The Turtle Book
 ---
 {% block head %}
-<link rel="stylesheet" href="/assets/css/book.css">
+<link rel="stylesheet" href="{{ base }}/assets/css/book.css">
 {% endblock %}
 
 <div class="book-toc">
@@ -12,7 +12,7 @@ title: The Turtle Book
   <ol>
     {% for ch in chapters %}
     <li>
-      <a href="/book/{{ ch.slug }}/">{{ ch.title }}</a>
+      <a href="{{ base }}/book/{{ ch.slug }}/">{{ ch.title }}</a>
     </li>
     {% endfor %}
   </ol>

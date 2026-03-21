@@ -14,8 +14,8 @@ eleventyComputed:
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ chapter.title }} — Turtle Logo</title>
   <meta name="description" content="The Turtle Book — {{ chapter.title }}">
-  <link rel="stylesheet" href="/assets/css/base.css">
-  <link rel="stylesheet" href="/assets/css/book.css">
+  <link rel="stylesheet" href="{{ base }}/assets/css/base.css">
+  <link rel="stylesheet" href="{{ base }}/assets/css/book.css">
 </head>
 <body>
   {% include "partials/nav.njk" %}
@@ -53,14 +53,14 @@ eleventyComputed:
 
       <div class="chapter-nav">
         {% if chapter.prev %}
-          <a href="/book/{{ chapter.prev.slug }}/">&larr; {{ chapter.prev.title }}</a>
+          <a href="{{ base }}/book/{{ chapter.prev.slug }}/">&larr; {{ chapter.prev.title }}</a>
         {% else %}
           <span></span>
         {% endif %}
         {% if chapter.next %}
-          <a href="/book/{{ chapter.next.slug }}/">{{ chapter.next.title }} &rarr;</a>
+          <a href="{{ base }}/book/{{ chapter.next.slug }}/">{{ chapter.next.title }} &rarr;</a>
         {% else %}
-          <a href="/book/">Back to Table of Contents</a>
+          <a href="{{ base }}/book/">Back to Table of Contents</a>
         {% endif %}
       </div>
     </div>
@@ -68,7 +68,7 @@ eleventyComputed:
 
   <footer class="site-footer">Turtle Logo &copy; 2026</footer>
   {% if chapter.hasCode %}
-  <script type="module" src="/assets/js/code-block.js"></script>
+  <script type="module" src="{{ base }}/assets/js/code-block.js"></script>
   {% endif %}
 </body>
 </html>

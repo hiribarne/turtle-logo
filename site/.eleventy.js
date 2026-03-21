@@ -4,7 +4,12 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy('assets/js');
   eleventyConfig.addPassthroughCopy('assets/img');
 
+  // Base path for GitHub Pages (repo name as subpath)
+  const pathPrefix = process.env.PATH_PREFIX || '/turtle-logo';
+  eleventyConfig.addGlobalData('base', pathPrefix);
+
   return {
+    pathPrefix,
     dir: {
       input: '.',
       includes: '_includes',
