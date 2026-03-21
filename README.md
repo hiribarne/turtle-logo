@@ -19,8 +19,6 @@ Turtle Logo is my attempt to recreate that. It comes in two forms:
 - **Website** — a browser-based interpreter and interactive tutorial, hosted on GitHub Pages
 - **Desktop app** — a single Python script with a tkinter GUI, like the original MSX Logo
 
-![Turtle Logo](screenshot.jpeg)
-
 ## Website
 
 The website at [hiribarne.github.io/turtle-logo](https://hiribarne.github.io/turtle-logo/) has three parts:
