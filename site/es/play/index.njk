@@ -1,0 +1,58 @@
+---
+layout: false
+---
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jugar — Turtle Logo</title>
+  <meta name="description" content="Un intérprete Logo en el navegador — ¡dibuja con código!">
+  <link rel="stylesheet" href="{{ base }}/assets/css/base.css">
+  <link rel="stylesheet" href="{{ base }}/assets/css/playground.css">
+</head>
+<body>
+  {% set lang = 'es' %}
+  {% set altUrl = '/play/' %}
+  {% include "partials/nav.njk" %}
+  <div class="playground-layout">
+    <div id="canvas-wrap">
+      <canvas id="drawing-canvas"></canvas>
+      <canvas id="sprite-canvas"></canvas>
+    </div>
+    <div id="output"></div>
+    <div class="input-row">
+      <span class="prompt">?&gt;</span>
+      <input type="text" id="cmd-input" autocomplete="off" autocapitalize="off" spellcheck="false" autofocus>
+      <button id="lang-btn" class="lang-toggle-btn" title="Cambiar idioma">ES</button>
+    </div>
+  </div>
+  <script>
+    function sizeCanvases() {
+      const wrap = document.getElementById('canvas-wrap');
+      const w = wrap.clientWidth;
+      const h = wrap.clientHeight;
+      const dpr = window.devicePixelRatio || 1;
+      window._canvasLogicalWidth = w;
+      window._canvasLogicalHeight = h;
+      for (const id of ['drawing-canvas', 'sprite-canvas']) {
+        const c = document.getElementById(id);
+        c.width = w * dpr;
+        c.height = h * dpr;
+        c.getContext('2d').setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+    }
+    sizeCanvases();
+    // Set default language to Spanish for this page
+    window._defaultLang = 'es';
+    window.addEventListener('resize', () => {
+      sizeCanvases();
+      if (window._logoRuntime) {
+        window._logoRuntime.turtle.setLogicalSize(window._canvasLogicalWidth, window._canvasLogicalHeight);
+        window._logoRuntime.turtle._drawCursor();
+      }
+    });
+  </script>
+  <script type="module" src="{{ base }}/assets/js/playground.js"></script>
+</body>
+</html>

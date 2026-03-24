@@ -46,7 +46,7 @@ if (langBtn) {
   updateLangButton();
   langBtn.addEventListener('click', () => {
     const newLang = runtime.language === 'es' ? 'en' : 'es';
-    runtime.run(newLang === 'es' ? 'IDIOMA ESPAÑOL' : 'LANGUAGE ENGLISH');
+    runtime.run(newLang === 'es' ? 'IDIOMA ES' : 'LANGUAGE EN');
   });
 }
 
@@ -182,6 +182,12 @@ input.addEventListener('keydown', (e) => {
 });
 
 // -- Startup --
+
+// Spanish playground page sets window._defaultLang = 'es'
+if (window._defaultLang && !localStorage.getItem('turtlelogo_language')) {
+  runtime.language = window._defaultLang;
+  updateLangButton();
+}
 
 if (window._canvasLogicalWidth) {
   runtime.turtle.setLogicalSize(window._canvasLogicalWidth, window._canvasLogicalHeight);

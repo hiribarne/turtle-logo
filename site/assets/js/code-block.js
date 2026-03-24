@@ -97,7 +97,7 @@ if (drawingCanvas && spriteCanvas) {
     updateLangButton();
     langBtn.addEventListener('click', () => {
       const newLang = runtime.language === 'es' ? 'en' : 'es';
-      runtime.run(newLang === 'es' ? 'IDIOMA ESPAÑOL' : 'LANGUAGE ENGLISH');
+      runtime.run(newLang === 'es' ? 'IDIOMA ES' : 'LANGUAGE EN');
     });
   }
 

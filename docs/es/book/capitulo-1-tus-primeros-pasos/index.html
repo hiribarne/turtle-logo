@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Capítulo 1: Tus Primeros Pasos — Turtle Logo</title>
+  <meta name="description" content="El Libro de la Tortuga — Capítulo 1: Tus Primeros Pasos">
+  <link rel="stylesheet" href="/turtle-logo/assets/css/base.css">
+  <link rel="stylesheet" href="/turtle-logo/assets/css/book.css">
+</head>
+<body>
+  
+  
+  
+<nav class="site-nav">
+  <a class="nav-brand" href="/turtle-logo/es/">Turtle Logo</a>
+  <a href="/turtle-logo/es/book/">El Libro de la Tortuga</a>
+  <a href="/turtle-logo/es/play/">Jugar</a>
+  <a class="nav-lang" href="/turtle-logo/book/">EN</a>
+</nav>
+
+
+
+  <div class="chapter-layout">
+    
+    <div class="chapter-turtle">
+      <div class="chapter-canvas-wrap" id="chapter-canvas-wrap">
+        <canvas id="chapter-drawing"></canvas>
+        <canvas id="chapter-sprite"></canvas>
+      </div>
+      <script>
+        (function() {
+          var wrap = document.getElementById('chapter-canvas-wrap');
+          var w = wrap.clientWidth, h = wrap.clientHeight;
+          ['chapter-drawing','chapter-sprite'].forEach(function(id) {
+            var c = document.getElementById(id);
+            c.width = w; c.height = h;
+          });
+        })();
+      </script>
+      <div class="chapter-turtle-bar">
+        <div class="chapter-output" id="chapter-output"></div>
+        <button class="lang-toggle-btn" id="chapter-lang-btn" title="Cambiar idioma">ES</button>
+        <button class="chapter-reset-btn" id="chapter-reset" title="Borrar pantalla y reiniciar">Reiniciar</button>
+      </div>
+    </div>
+    
+
+    <div class="chapter-content">
+      <h1>Capítulo 1: Tus Primeros Pasos</h1>
+      <p>Escribe esto y presiona ENTER:</p>
+<div class="logo-block" data-code="AD 50">
+  <pre><code>AD 50</code></pre>
+  <div class="logo-toolbar">
+    <button class="logo-run-btn" title="Ejecutar">Ejecutar</button>
+  </div>
+</div>
+<p>¡La tortuga avanzó 50 pasos!</p>
+<p><strong>AD</strong> quiere decir <strong>ADELANTE</strong> (es lo mismo que <strong>FD</strong> en inglés).
+El número le dice a la tortuga qué tan lejos ir.</p>
+<p>Prueba estos uno a la vez:</p>
+<div class="logo-block logo-block--multi" data-code="AD 100
+AD 10
+AD 200">
+  <div class="logo-lines">
+    <div class="logo-line" data-code="AD 100">
+      <code>AD 100</code>
+      <button class="logo-run-line" title="Ejecutar esta línea">&#9654;</button>
+    </div>
+    <div class="logo-line" data-code="AD 10">
+      <code>AD 10</code>
+      <button class="logo-run-line" title="Ejecutar esta línea">&#9654;</button>
+    </div>
+    <div class="logo-line" data-code="AD 200">
+      <code>AD 200</code>
+      <button class="logo-run-line" title="Ejecutar esta línea">&#9654;</button>
+    </div>
+  </div>
+  <div class="logo-toolbar">
+    <button class="logo-run-btn" title="Ejecutar todo">Ejecutar</button>
+  </div>
+</div>
+<p>¿Qué pasa cuando el número es más grande?
+¡La tortuga llega más lejos!</p>
+<hr>
+<p>Ahora prueba ir hacia atrás:</p>
+<div class="logo-block" data-code="AT 50">
+  <pre><code>AT 50</code></pre>
+  <div class="logo-toolbar">
+    <button class="logo-run-btn" title="Ejecutar">Ejecutar</button>
+  </div>
+</div>
+<p><strong>AT</strong> quiere decir <strong>ATRÁS</strong> (es lo mismo que <strong>BK</strong> en inglés).</p>
+<p>La tortuga camina hacia atrás, pero sigue mirando en la misma dirección.</p>
+<hr>
+
+
+      <div class="chapter-nav">
+        
+          <a href="/turtle-logo/es/book/conoce-a-la-tortuga/">&larr; Conoce a la Tortuga</a>
+        
+        
+          <a href="/turtle-logo/es/book/capitulo-2-gira-la-tortuga/">Capítulo 2: Gira la Tortuga &rarr;</a>
+        
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">Turtle Logo &copy; 2026</footer>
+  
+  <script type="module" src="/turtle-logo/assets/js/code-block.js"></script>
+  
+</body>
+</html>

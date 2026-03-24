@@ -67,6 +67,16 @@ a:hover {
   text-decoration: none;
 }
 
+.site-nav .nav-lang {
+  margin-left: auto;
+  background: var(--border);
+  color: var(--accent);
+  padding: 0.15rem 0.5rem;
+  border-radius: 3px;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
 /* -- Footer -- */
 
 .site-footer {

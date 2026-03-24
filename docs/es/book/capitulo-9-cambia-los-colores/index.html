@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Capítulo 9: Cambia los Colores — Turtle Logo</title>
+  <meta name="description" content="El Libro de la Tortuga — Capítulo 9: Cambia los Colores">
+  <link rel="stylesheet" href="/turtle-logo/assets/css/base.css">
+  <link rel="stylesheet" href="/turtle-logo/assets/css/book.css">
+</head>
+<body>
+  
+  
+  
+<nav class="site-nav">
+  <a class="nav-brand" href="/turtle-logo/es/">Turtle Logo</a>
+  <a href="/turtle-logo/es/book/">El Libro de la Tortuga</a>
+  <a href="/turtle-logo/es/play/">Jugar</a>
+  <a class="nav-lang" href="/turtle-logo/book/">EN</a>
+</nav>
+
+
+
+  <div class="chapter-layout">
+    
+    <div class="chapter-turtle">
+      <div class="chapter-canvas-wrap" id="chapter-canvas-wrap">
+        <canvas id="chapter-drawing"></canvas>
+        <canvas id="chapter-sprite"></canvas>
+      </div>
+      <script>
+        (function() {
+          var wrap = document.getElementById('chapter-canvas-wrap');
+          var w = wrap.clientWidth, h = wrap.clientHeight;
+          ['chapter-drawing','chapter-sprite'].forEach(function(id) {
+            var c = document.getElementById(id);
+            c.width = w; c.height = h;
+          });
+        })();
+      </script>
+      <div class="chapter-turtle-bar">
+        <div class="chapter-output" id="chapter-output"></div>
+        <button class="lang-toggle-btn" id="chapter-lang-btn" title="Cambiar idioma">ES</button>
+        <button class="chapter-reset-btn" id="chapter-reset" title="Borrar pantalla y reiniciar">Reiniciar</button>
+      </div>
+    </div>
+    
+
+    <div class="chapter-content">
+      <h1>Capítulo 9: Cambia los Colores</h1>
+      <p>La tortuga siempre dibuja en verde.
+¡Pero puedes cambiar el color!</p>
+<div class="logo-block" data-code="FCOLORP 1">
+  <pre><code>FCOLORP 1</code></pre>
+  <div class="logo-toolbar">
+    <button class="logo-run-btn" title="Ejecutar">Ejecutar</button>
+  </div>
+</div>
+<p><strong>FCOLORP</strong> quiere decir <strong>fijar color de pluma</strong> (es lo mismo que <strong>SETPC</strong> en inglés).
+El número elige un color.</p>
+<p>Prueba estos:</p>
+<ul>
+<li><strong>FCOLORP 0</strong> — blanco</li>
+<li><strong>FCOLORP 1</strong> — rojo</li>
+<li><strong>FCOLORP 2</strong> — verde</li>
+<li><strong>FCOLORP 3</strong> — amarillo</li>
+<li><strong>FCOLORP 4</strong> — cian (azul-verde)</li>
+<li><strong>FCOLORP 5</strong> — rosa</li>
+<li><strong>FCOLORP 6</strong> — naranja</li>
+<li><strong>FCOLORP 7</strong> — azul cielo</li>
+</ul>
+<p>Dibuja un cuadrado rojo:</p>
+<div class="logo-block logo-block--multi" data-code="BP
+FCOLORP 1
+REPETIR 4 [AD 80 DE 90]">
+  <div class="logo-lines">
+    <div class="logo-line" data-code="BP">
+      <code>BP</code>
+      <button class="logo-run-line" title="Ejecutar esta línea">&#9654;</button>
+    </div>
+    <div class="logo-line" data-code="FCOLORP 1">
+      <code>FCOLORP 1</code>
+      <button class="logo-run-line" title="Ejecutar esta línea">&#9654;</button>
+    </div>
+    <div class="logo-line" data-code="REPETIR 4 [AD 80 DE 90]">
+      <code>REPETIR 4 [AD 80 DE 90]</code>
+      <button class="logo-run-line" title="Ejecutar esta línea">&#9654;</button>
+    </div>
+  </div>
+  <div class="logo-toolbar">
+    <button class="logo-run-btn" title="Ejecutar todo">Ejecutar</button>
+  </div>
+</div>
+<p>Dibuja un triángulo amarillo:</p>
+<div class="logo-block logo-block--multi" data-code="BP
+FCOLORP 3
+REPETIR 3 [AD 80 DE 120]">
+  <div class="logo-lines">
+    <div class="logo-line" data-code="BP">
+      <code>BP</code>
+      <button class="logo-run-line" title="Ejecutar esta línea">&#9654;</button>
+    </div>
+    <div class="logo-line" data-code="FCOLORP 3">
+      <code>FCOLORP 3</code>
+      <button class="logo-run-line" title="Ejecutar esta línea">&#9654;</button>
+    </div>
+    <div class="logo-line" data-code="REPETIR 3 [AD 80 DE 120]">
+      <code>REPETIR 3 [AD 80 DE 120]</code>
+      <button class="logo-run-line" title="Ejecutar esta línea">&#9654;</button>
+    </div>
+  </div>
+  <div class="logo-toolbar">
+    <button class="logo-run-btn" title="Ejecutar todo">Ejecutar</button>
+  </div>
+</div>
+<hr>
+
+
+      <div class="chapter-nav">
+        
+          <a href="/turtle-logo/es/book/capitulo-8-un-circulo-casi/">&larr; Capítulo 8: Un Círculo (¡Casi!)</a>
+        
+        
+          <a href="/turtle-logo/es/book/capitulo-10-colores-de-fondo/">Capítulo 10: Colores de Fondo &rarr;</a>
+        
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">Turtle Logo &copy; 2026</footer>
+  
+  <script type="module" src="/turtle-logo/assets/js/code-block.js"></script>
+  
+</body>
+</html>

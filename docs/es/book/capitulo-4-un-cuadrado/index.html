@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Capítulo 4: Un Cuadrado — Turtle Logo</title>
+  <meta name="description" content="El Libro de la Tortuga — Capítulo 4: Un Cuadrado">
+  <link rel="stylesheet" href="/turtle-logo/assets/css/base.css">
+  <link rel="stylesheet" href="/turtle-logo/assets/css/book.css">
+</head>
+<body>
+  
+  
+  
+<nav class="site-nav">
+  <a class="nav-brand" href="/turtle-logo/es/">Turtle Logo</a>
+  <a href="/turtle-logo/es/book/">El Libro de la Tortuga</a>
+  <a href="/turtle-logo/es/play/">Jugar</a>
+  <a class="nav-lang" href="/turtle-logo/book/">EN</a>
+</nav>
+
+
+
+  <div class="chapter-layout">
+    
+    <div class="chapter-turtle">
+      <div class="chapter-canvas-wrap" id="chapter-canvas-wrap">
+        <canvas id="chapter-drawing"></canvas>
+        <canvas id="chapter-sprite"></canvas>
+      </div>
+      <script>
+        (function() {
+          var wrap = document.getElementById('chapter-canvas-wrap');
+          var w = wrap.clientWidth, h = wrap.clientHeight;
+          ['chapter-drawing','chapter-sprite'].forEach(function(id) {
+            var c = document.getElementById(id);
+            c.width = w; c.height = h;
+          });
+        })();
+      </script>
+      <div class="chapter-turtle-bar">
+        <div class="chapter-output" id="chapter-output"></div>
+        <button class="lang-toggle-btn" id="chapter-lang-btn" title="Cambiar idioma">ES</button>
+        <button class="chapter-reset-btn" id="chapter-reset" title="Borrar pantalla y reiniciar">Reiniciar</button>
+      </div>
+    </div>
+    
+
+    <div class="chapter-content">
+      <h1>Capítulo 4: Un Cuadrado</h1>
+      <p>Un cuadrado tiene <strong>4 lados</strong>.
+Todos los lados miden lo mismo.
+Cada esquina es un <strong>ángulo recto</strong> — o sea <strong>90 grados</strong>.</p>
+<p>Primero limpia la pantalla:</p>
+<div class="logo-block" data-code="BP">
+  <pre><code>BP</code></pre>
+  <div class="logo-toolbar">
+    <button class="logo-run-btn" title="Ejecutar">Ejecutar</button>
+  </div>
+</div>
+<p>Ahora escribe estos uno a la vez:</p>
+<div class="logo-block logo-block--multi" data-code="AD 80
+DE 90
+AD 80
+DE 90
+AD 80
+DE 90
+AD 80
+DE 90">
+  <div class="logo-lines">
+    <div class="logo-line" data-code="AD 80">
+      <code>AD 80</code>
+      <button class="logo-run-line" title="Ejecutar esta línea">&#9654;</button>
+    </div>
+    <div class="logo-line" data-code="DE 90">
+      <code>DE 90</code>
+      <button class="logo-run-line" title="Ejecutar esta línea">&#9654;</button>
+    </div>
+    <div class="logo-line" data-code="AD 80">
+      <code>AD 80</code>
+      <button class="logo-run-line" title="Ejecutar esta línea">&#9654;</button>
+    </div>
+    <div class="logo-line" data-code="DE 90">
+      <code>DE 90</code>
+      <button class="logo-run-line" title="Ejecutar esta línea">&#9654;</button>
+    </div>
+    <div class="logo-line" data-code="AD 80">
+      <code>AD 80</code>
+      <button class="logo-run-line" title="Ejecutar esta línea">&#9654;</button>
+    </div>
+    <div class="logo-line" data-code="DE 90">
+      <code>DE 90</code>
+      <button class="logo-run-line" title="Ejecutar esta línea">&#9654;</button>
+    </div>
+    <div class="logo-line" data-code="AD 80">
+      <code>AD 80</code>
+      <button class="logo-run-line" title="Ejecutar esta línea">&#9654;</button>
+    </div>
+    <div class="logo-line" data-code="DE 90">
+      <code>DE 90</code>
+      <button class="logo-run-line" title="Ejecutar esta línea">&#9654;</button>
+    </div>
+  </div>
+  <div class="logo-toolbar">
+    <button class="logo-run-btn" title="Ejecutar todo">Ejecutar</button>
+  </div>
+</div>
+<p>¡Dibujaste un cuadrado!</p>
+<p>¿Viste el patrón?
+<strong>AD 80</strong> y luego <strong>DE 90</strong> — lo hiciste cuatro veces.</p>
+<hr>
+
+
+      <div class="chapter-nav">
+        
+          <a href="/turtle-logo/es/book/capitulo-3-dibuja-una-l/">&larr; Capítulo 3: Dibuja una L</a>
+        
+        
+          <a href="/turtle-logo/es/book/capitulo-5-repetir/">Capítulo 5: REPETIR &rarr;</a>
+        
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">Turtle Logo &copy; 2026</footer>
+  
+  <script type="module" src="/turtle-logo/assets/js/code-block.js"></script>
+  
+</body>
+</html>

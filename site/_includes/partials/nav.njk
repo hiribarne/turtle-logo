@@ -1,5 +1,15 @@
+{% if lang == 'es' %}
+<nav class="site-nav">
+  <a class="nav-brand" href="{{ base }}/es/">Turtle Logo</a>
+  <a href="{{ base }}/es/book/">El Libro de la Tortuga</a>
+  <a href="{{ base }}/es/play/">Jugar</a>
+  <a class="nav-lang" href="{{ base }}{{ altUrl or '/' }}">EN</a>
+</nav>
+{% else %}
 <nav class="site-nav">
   <a class="nav-brand" href="{{ base }}/">Turtle Logo</a>
   <a href="{{ base }}/book/">The Turtle Book</a>
   <a href="{{ base }}/play/">Play</a>
+  <a class="nav-lang" href="{{ base }}/es{{ altUrl or '/' }}">ES</a>
 </nav>
+{% endif %}

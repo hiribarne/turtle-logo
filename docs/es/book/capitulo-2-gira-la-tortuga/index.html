@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Capítulo 2: Gira la Tortuga — Turtle Logo</title>
+  <meta name="description" content="El Libro de la Tortuga — Capítulo 2: Gira la Tortuga">
+  <link rel="stylesheet" href="/turtle-logo/assets/css/base.css">
+  <link rel="stylesheet" href="/turtle-logo/assets/css/book.css">
+</head>
+<body>
+  
+  
+  
+<nav class="site-nav">
+  <a class="nav-brand" href="/turtle-logo/es/">Turtle Logo</a>
+  <a href="/turtle-logo/es/book/">El Libro de la Tortuga</a>
+  <a href="/turtle-logo/es/play/">Jugar</a>
+  <a class="nav-lang" href="/turtle-logo/book/">EN</a>
+</nav>
+
+
+
+  <div class="chapter-layout">
+    
+    <div class="chapter-turtle">
+      <div class="chapter-canvas-wrap" id="chapter-canvas-wrap">
+        <canvas id="chapter-drawing"></canvas>
+        <canvas id="chapter-sprite"></canvas>
+      </div>
+      <script>
+        (function() {
+          var wrap = document.getElementById('chapter-canvas-wrap');
+          var w = wrap.clientWidth, h = wrap.clientHeight;
+          ['chapter-drawing','chapter-sprite'].forEach(function(id) {
+            var c = document.getElementById(id);
+            c.width = w; c.height = h;
+          });
+        })();
+      </script>
+      <div class="chapter-turtle-bar">
+        <div class="chapter-output" id="chapter-output"></div>
+        <button class="lang-toggle-btn" id="chapter-lang-btn" title="Cambiar idioma">ES</button>
+        <button class="chapter-reset-btn" id="chapter-reset" title="Borrar pantalla y reiniciar">Reiniciar</button>
+      </div>
+    </div>
+    
+
+    <div class="chapter-content">
+      <h1>Capítulo 2: Gira la Tortuga</h1>
+      <p>La tortuga también puede girar.</p>
+<div class="logo-block" data-code="DE 90">
+  <pre><code>DE 90</code></pre>
+  <div class="logo-toolbar">
+    <button class="logo-run-btn" title="Ejecutar">Ejecutar</button>
+  </div>
+</div>
+<p><strong>DE</strong> quiere decir <strong>girar a la DERECHA</strong> (es lo mismo que <strong>RT</strong> en inglés).
+<strong>90</strong> es un número de grados.</p>
+<p>¿Sabes qué son 90 grados?
+Es un <strong>ángulo recto</strong> — como la esquina de un libro, una puerta o tu escritorio.</p>
+<p>Ahora prueba:</p>
+<div class="logo-block" data-code="IZ 90">
+  <pre><code>IZ 90</code></pre>
+  <div class="logo-toolbar">
+    <button class="logo-run-btn" title="Ejecutar">Ejecutar</button>
+  </div>
+</div>
+<p><strong>IZ</strong> quiere decir <strong>girar a la IZQUIERDA</strong> (es lo mismo que <strong>LT</strong> en inglés).</p>
+<p>Prueba otros giros:</p>
+<div class="logo-block" data-code="DE 45">
+  <pre><code>DE 45</code></pre>
+  <div class="logo-toolbar">
+    <button class="logo-run-btn" title="Ejecutar">Ejecutar</button>
+  </div>
+</div>
+<p>Eso es la mitad de un ángulo recto.</p>
+<div class="logo-block" data-code="DE 180">
+  <pre><code>DE 180</code></pre>
+  <div class="logo-toolbar">
+    <button class="logo-run-btn" title="Ejecutar">Ejecutar</button>
+  </div>
+</div>
+<p>¡Eso gira a la tortuga completamente para que mire en la dirección opuesta!</p>
+<hr>
+
+
+      <div class="chapter-nav">
+        
+          <a href="/turtle-logo/es/book/capitulo-1-tus-primeros-pasos/">&larr; Capítulo 1: Tus Primeros Pasos</a>
+        
+        
+          <a href="/turtle-logo/es/book/capitulo-3-dibuja-una-l/">Capítulo 3: Dibuja una L &rarr;</a>
+        
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">Turtle Logo &copy; 2026</footer>
+  
+  <script type="module" src="/turtle-logo/assets/js/code-block.js"></script>
+  
+</body>
+</html>

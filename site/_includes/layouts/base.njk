@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ lang or 'en' }}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ title }} — Turtle Logo</title>
-  <meta name="description" content="{{ description or 'A Logo interpreter for kids — learn to draw with code!' }}">
+  <meta name="description" content="{{ description or ('Un intérprete Logo para niños' if lang == 'es' else 'A Logo interpreter for kids — learn to draw with code!') }}">
   <meta property="og:title" content="{{ title }} — Turtle Logo">
-  <meta property="og:description" content="{{ description or 'A Logo interpreter for kids — learn to draw with code!' }}">
+  <meta property="og:description" content="{{ description or ('Un intérprete Logo para niños' if lang == 'es' else 'A Logo interpreter for kids — learn to draw with code!') }}">
   <meta property="og:type" content="website">
   <link rel="stylesheet" href="{{ base }}/assets/css/base.css">
   {% block head %}{% endblock %}

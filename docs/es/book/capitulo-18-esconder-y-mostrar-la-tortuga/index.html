@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Capítulo 18: Esconder y Mostrar la Tortuga — Turtle Logo</title>
+  <meta name="description" content="El Libro de la Tortuga — Capítulo 18: Esconder y Mostrar la Tortuga">
+  <link rel="stylesheet" href="/turtle-logo/assets/css/base.css">
+  <link rel="stylesheet" href="/turtle-logo/assets/css/book.css">
+</head>
+<body>
+  
+  
+  
+<nav class="site-nav">
+  <a class="nav-brand" href="/turtle-logo/es/">Turtle Logo</a>
+  <a href="/turtle-logo/es/book/">El Libro de la Tortuga</a>
+  <a href="/turtle-logo/es/play/">Jugar</a>
+  <a class="nav-lang" href="/turtle-logo/book/">EN</a>
+</nav>
+
+
+
+  <div class="chapter-layout">
+    
+    <div class="chapter-turtle">
+      <div class="chapter-canvas-wrap" id="chapter-canvas-wrap">
+        <canvas id="chapter-drawing"></canvas>
+        <canvas id="chapter-sprite"></canvas>
+      </div>
+      <script>
+        (function() {
+          var wrap = document.getElementById('chapter-canvas-wrap');
+          var w = wrap.clientWidth, h = wrap.clientHeight;
+          ['chapter-drawing','chapter-sprite'].forEach(function(id) {
+            var c = document.getElementById(id);
+            c.width = w; c.height = h;
+          });
+        })();
+      </script>
+      <div class="chapter-turtle-bar">
+        <div class="chapter-output" id="chapter-output"></div>
+        <button class="lang-toggle-btn" id="chapter-lang-btn" title="Cambiar idioma">ES</button>
+        <button class="chapter-reset-btn" id="chapter-reset" title="Borrar pantalla y reiniciar">Reiniciar</button>
+      </div>
+    </div>
+    
+
+    <div class="chapter-content">
+      <h1>Capítulo 18: Esconder y Mostrar la Tortuga</h1>
+      <p>A veces la tortuga estorba en tu dibujo.</p>
+<div class="logo-block" data-code="OT">
+  <pre><code>OT</code></pre>
+  <div class="logo-toolbar">
+    <button class="logo-run-btn" title="Ejecutar">Ejecutar</button>
+  </div>
+</div>
+<p><strong>OT</strong> quiere decir <strong>OCULTARTORTUGA</strong> (es lo mismo que <strong>HT</strong> en inglés). La tortuga sigue ahí — solo que no la ves. ¡Sigue dibujando!</p>
+<div class="logo-block" data-code="MT">
+  <pre><code>MT</code></pre>
+  <div class="logo-toolbar">
+    <button class="logo-run-btn" title="Ejecutar">Ejecutar</button>
+  </div>
+</div>
+<p><strong>MT</strong> quiere decir <strong>MOSTRARTORTUGA</strong> (es lo mismo que <strong>ST</strong> en inglés). Ahora la puedes ver otra vez.</p>
+<p>Prueba esto:</p>
+<div class="logo-block logo-block--multi" data-code="BP
+OT
+REPETIR 36 [AD 10 DE 10]
+MT">
+  <div class="logo-lines">
+    <div class="logo-line" data-code="BP">
+      <code>BP</code>
+      <button class="logo-run-line" title="Ejecutar esta línea">&#9654;</button>
+    </div>
+    <div class="logo-line" data-code="OT">
+      <code>OT</code>
+      <button class="logo-run-line" title="Ejecutar esta línea">&#9654;</button>
+    </div>
+    <div class="logo-line" data-code="REPETIR 36 [AD 10 DE 10]">
+      <code>REPETIR 36 [AD 10 DE 10]</code>
+      <button class="logo-run-line" title="Ejecutar esta línea">&#9654;</button>
+    </div>
+    <div class="logo-line" data-code="MT">
+      <code>MT</code>
+      <button class="logo-run-line" title="Ejecutar esta línea">&#9654;</button>
+    </div>
+  </div>
+  <div class="logo-toolbar">
+    <button class="logo-run-btn" title="Ejecutar todo">Ejecutar</button>
+  </div>
+</div>
+<p>¡El círculo aparece sin que la tortuga tape la vista!</p>
+<hr>
+
+
+      <div class="chapter-nav">
+        
+          <a href="/turtle-logo/es/book/capitulo-17-un-patron/">&larr; Capítulo 17: Un Patrón</a>
+        
+        
+          <a href="/turtle-logo/es/book/capitulo-19-ve-a-casa/">Capítulo 19: Ve a Casa &rarr;</a>
+        
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">Turtle Logo &copy; 2026</footer>
+  
+  <script type="module" src="/turtle-logo/assets/js/code-block.js"></script>
+  
+</body>
+</html>

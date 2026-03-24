@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Capítulo 12: Levanta la Pluma — Turtle Logo</title>
+  <meta name="description" content="El Libro de la Tortuga — Capítulo 12: Levanta la Pluma">
+  <link rel="stylesheet" href="/turtle-logo/assets/css/base.css">
+  <link rel="stylesheet" href="/turtle-logo/assets/css/book.css">
+</head>
+<body>
+  
+  
+  
+<nav class="site-nav">
+  <a class="nav-brand" href="/turtle-logo/es/">Turtle Logo</a>
+  <a href="/turtle-logo/es/book/">El Libro de la Tortuga</a>
+  <a href="/turtle-logo/es/play/">Jugar</a>
+  <a class="nav-lang" href="/turtle-logo/book/">EN</a>
+</nav>
+
+
+
+  <div class="chapter-layout">
+    
+    <div class="chapter-turtle">
+      <div class="chapter-canvas-wrap" id="chapter-canvas-wrap">
+        <canvas id="chapter-drawing"></canvas>
+        <canvas id="chapter-sprite"></canvas>
+      </div>
+      <script>
+        (function() {
+          var wrap = document.getElementById('chapter-canvas-wrap');
+          var w = wrap.clientWidth, h = wrap.clientHeight;
+          ['chapter-drawing','chapter-sprite'].forEach(function(id) {
+            var c = document.getElementById(id);
+            c.width = w; c.height = h;
+          });
+        })();
+      </script>
+      <div class="chapter-turtle-bar">
+        <div class="chapter-output" id="chapter-output"></div>
+        <button class="lang-toggle-btn" id="chapter-lang-btn" title="Cambiar idioma">ES</button>
+        <button class="chapter-reset-btn" id="chapter-reset" title="Borrar pantalla y reiniciar">Reiniciar</button>
+      </div>
+    </div>
+    
+
+    <div class="chapter-content">
+      <h1>Capítulo 12: Levanta la Pluma</h1>
+      <p>Cuando escribes <strong>AD</strong>, la tortuga siempre dibuja.</p>
+<p>Pero a veces quieres mover sin dibujar.</p>
+<p><strong>SP</strong> quiere decir <strong>SIN PLUMA</strong> (es lo mismo que <strong>PU</strong> en inglés) — la tortuga se mueve pero no dibuja.
+<strong>CP</strong> quiere decir <strong>CON PLUMA</strong> (es lo mismo que <strong>PD</strong> en inglés) — la tortuga vuelve a dibujar.</p>
+<p>Prueba esto:</p>
+<div class="logo-block logo-block--multi" data-code="BP
+AD 50
+SP
+AD 30
+CP
+AD 50">
+  <div class="logo-lines">
+    <div class="logo-line" data-code="BP">
+      <code>BP</code>
+      <button class="logo-run-line" title="Ejecutar esta línea">&#9654;</button>
+    </div>
+    <div class="logo-line" data-code="AD 50">
+      <code>AD 50</code>
+      <button class="logo-run-line" title="Ejecutar esta línea">&#9654;</button>
+    </div>
+    <div class="logo-line" data-code="SP">
+      <code>SP</code>
+      <button class="logo-run-line" title="Ejecutar esta línea">&#9654;</button>
+    </div>
+    <div class="logo-line" data-code="AD 30">
+      <code>AD 30</code>
+      <button class="logo-run-line" title="Ejecutar esta línea">&#9654;</button>
+    </div>
+    <div class="logo-line" data-code="CP">
+      <code>CP</code>
+      <button class="logo-run-line" title="Ejecutar esta línea">&#9654;</button>
+    </div>
+    <div class="logo-line" data-code="AD 50">
+      <code>AD 50</code>
+      <button class="logo-run-line" title="Ejecutar esta línea">&#9654;</button>
+    </div>
+  </div>
+  <div class="logo-toolbar">
+    <button class="logo-run-btn" title="Ejecutar todo">Ejecutar</button>
+  </div>
+</div>
+<p>¡Tienes una línea, un espacio y otra línea!</p>
+<p>Así puedes dibujar formas que no están conectadas.</p>
+<hr>
+
+
+      <div class="chapter-nav">
+        
+          <a href="/turtle-logo/es/book/capitulo-11-lineas-gruesas-y-delgadas/">&larr; Capítulo 11: Líneas Gruesas y Delgadas</a>
+        
+        
+          <a href="/turtle-logo/es/book/capitulo-13-una-estrella/">Capítulo 13: Una Estrella &rarr;</a>
+        
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">Turtle Logo &copy; 2026</footer>
+  
+  <script type="module" src="/turtle-logo/assets/js/code-block.js"></script>
+  
+</body>
+</html>

@@ -139,8 +139,8 @@ OTHER:
   'STOP': 'STOP \u2014 stop the current procedure.',
   'BYE': 'BYE (ADIOS) \u2014 quit Turtle Logo.',
   'CLEAN': 'CLEAN (LIMPIAR) \u2014 erase all drawings but keep the turtle where it is.',
-  'LANGUAGE': 'LANGUAGE ENGLISH / IDIOMA ESPA\u00d1OL \u2014 switch output language.',
-  'IDIOMA': 'IDIOMA ESPA\u00d1OL / LANGUAGE ENGLISH \u2014 cambiar idioma.',
+  'LANGUAGE': 'LANGUAGE EN / IDIOMA ES \u2014 switch output language.',
+  'IDIOMA': 'IDIOMA ES / LANGUAGE EN \u2014 cambiar idioma.',
 };
 
 /** Levenshtein edit distance. */

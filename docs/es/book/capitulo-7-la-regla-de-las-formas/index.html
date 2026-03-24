@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Capítulo 7: La Regla de las Formas — Turtle Logo</title>
+  <meta name="description" content="El Libro de la Tortuga — Capítulo 7: La Regla de las Formas">
+  <link rel="stylesheet" href="/turtle-logo/assets/css/base.css">
+  <link rel="stylesheet" href="/turtle-logo/assets/css/book.css">
+</head>
+<body>
+  
+  
+  
+<nav class="site-nav">
+  <a class="nav-brand" href="/turtle-logo/es/">Turtle Logo</a>
+  <a href="/turtle-logo/es/book/">El Libro de la Tortuga</a>
+  <a href="/turtle-logo/es/play/">Jugar</a>
+  <a class="nav-lang" href="/turtle-logo/book/">EN</a>
+</nav>
+
+
+
+  <div class="chapter-layout">
+    
+    <div class="chapter-turtle">
+      <div class="chapter-canvas-wrap" id="chapter-canvas-wrap">
+        <canvas id="chapter-drawing"></canvas>
+        <canvas id="chapter-sprite"></canvas>
+      </div>
+      <script>
+        (function() {
+          var wrap = document.getElementById('chapter-canvas-wrap');
+          var w = wrap.clientWidth, h = wrap.clientHeight;
+          ['chapter-drawing','chapter-sprite'].forEach(function(id) {
+            var c = document.getElementById(id);
+            c.width = w; c.height = h;
+          });
+        })();
+      </script>
+      <div class="chapter-turtle-bar">
+        <div class="chapter-output" id="chapter-output"></div>
+        <button class="lang-toggle-btn" id="chapter-lang-btn" title="Cambiar idioma">ES</button>
+        <button class="chapter-reset-btn" id="chapter-reset" title="Borrar pantalla y reiniciar">Reiniciar</button>
+      </div>
+    </div>
+    
+
+    <div class="chapter-content">
+      <h1>Capítulo 7: La Regla de las Formas</h1>
+      <p>Acabas de aprender algo importante.</p>
+<p>Para dibujar cualquier forma, la tortuga necesita girar un total de <strong>360 grados</strong>.</p>
+<p>Entonces el giro en cada esquina es:</p>
+<p><strong>Giro = 360 ÷ número de lados</strong></p>
+<p>¡Vamos a probarlo!</p>
+<p>Un <strong>pentágono</strong> tiene 5 lados. 360 ÷ 5 = 72.</p>
+<div class="logo-block logo-block--multi" data-code="BP
+REPETIR 5 [AD 60 DE 72]">
+  <div class="logo-lines">
+    <div class="logo-line" data-code="BP">
+      <code>BP</code>
+      <button class="logo-run-line" title="Ejecutar esta línea">&#9654;</button>
+    </div>
+    <div class="logo-line" data-code="REPETIR 5 [AD 60 DE 72]">
+      <code>REPETIR 5 [AD 60 DE 72]</code>
+      <button class="logo-run-line" title="Ejecutar esta línea">&#9654;</button>
+    </div>
+  </div>
+  <div class="logo-toolbar">
+    <button class="logo-run-btn" title="Ejecutar todo">Ejecutar</button>
+  </div>
+</div>
+<p>Un <strong>hexágono</strong> tiene 6 lados. 360 ÷ 6 = 60.</p>
+<div class="logo-block logo-block--multi" data-code="BP
+REPETIR 6 [AD 50 DE 60]">
+  <div class="logo-lines">
+    <div class="logo-line" data-code="BP">
+      <code>BP</code>
+      <button class="logo-run-line" title="Ejecutar esta línea">&#9654;</button>
+    </div>
+    <div class="logo-line" data-code="REPETIR 6 [AD 50 DE 60]">
+      <code>REPETIR 6 [AD 50 DE 60]</code>
+      <button class="logo-run-line" title="Ejecutar esta línea">&#9654;</button>
+    </div>
+  </div>
+  <div class="logo-toolbar">
+    <button class="logo-run-btn" title="Ejecutar todo">Ejecutar</button>
+  </div>
+</div>
+<p>Un <strong>octágono</strong> tiene 8 lados. 360 ÷ 8 = 45.</p>
+<div class="logo-block logo-block--multi" data-code="BP
+REPETIR 8 [AD 40 DE 45]">
+  <div class="logo-lines">
+    <div class="logo-line" data-code="BP">
+      <code>BP</code>
+      <button class="logo-run-line" title="Ejecutar esta línea">&#9654;</button>
+    </div>
+    <div class="logo-line" data-code="REPETIR 8 [AD 40 DE 45]">
+      <code>REPETIR 8 [AD 40 DE 45]</code>
+      <button class="logo-run-line" title="Ejecutar esta línea">&#9654;</button>
+    </div>
+  </div>
+  <div class="logo-toolbar">
+    <button class="logo-run-btn" title="Ejecutar todo">Ejecutar</button>
+  </div>
+</div>
+<p>¿Ves el patrón? ¡Más lados = giro más pequeño = forma más redonda!</p>
+<hr>
+
+
+      <div class="chapter-nav">
+        
+          <a href="/turtle-logo/es/book/capitulo-6-un-triangulo/">&larr; Capítulo 6: Un Triángulo</a>
+        
+        
+          <a href="/turtle-logo/es/book/capitulo-8-un-circulo-casi/">Capítulo 8: Un Círculo (¡Casi!) &rarr;</a>
+        
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">Turtle Logo &copy; 2026</footer>
+  
+  <script type="module" src="/turtle-logo/assets/js/code-block.js"></script>
+  
+</body>
+</html>

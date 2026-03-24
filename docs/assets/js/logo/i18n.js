@@ -178,8 +178,8 @@ export const MSG = {
   // Language
   langSet:        { en: 'Language set to English.',
                     es: 'Idioma cambiado a espa\u00f1ol.' },
-  langUsage:      { en: "LANGUAGE ENGLISH or IDIOMA ESPA\u00d1OL",
-                    es: "LANGUAGE ENGLISH o IDIOMA ESPA\u00d1OL" },
+  langUsage:      { en: "LANGUAGE EN or IDIOMA ES",
+                    es: "LANGUAGE EN o IDIOMA ES" },
 };
 
 /**
@@ -300,6 +300,6 @@ OTROS:
   'EDITSHAPE': 'EDITSHAPE o EDITSHAPE nombre \u2014 abrir el editor de formas.\n\u00a1Haz clic en los cuadrados para dibujar tu propia tortuga!\nEjemplo: EDITSHAPE STAR',
   'SETSHAPE': 'SETSHAPE nombre \u2014 cambiar la tortuga a una forma guardada.\nSETSHAPE TURTLE vuelve a la tortuga normal.\nEjemplo: SETSHAPE STAR',
   'SHAPES': 'SHAPES \u2014 listar todas las formas guardadas.',
-  'IDIOMA': 'IDIOMA ESPA\u00d1OL / LANGUAGE ENGLISH \u2014 cambiar el idioma.',
-  'LANGUAGE': 'IDIOMA ESPA\u00d1OL / LANGUAGE ENGLISH \u2014 cambiar el idioma.',
+  'IDIOMA': 'IDIOMA ES / LANGUAGE EN \u2014 cambiar el idioma.',
+  'LANGUAGE': 'IDIOMA ES / LANGUAGE EN \u2014 cambiar el idioma.',
 };

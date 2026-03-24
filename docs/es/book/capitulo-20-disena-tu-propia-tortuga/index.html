@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Capítulo 20: Diseña Tu Propia Tortuga — Turtle Logo</title>
+  <meta name="description" content="El Libro de la Tortuga — Capítulo 20: Diseña Tu Propia Tortuga">
+  <link rel="stylesheet" href="/turtle-logo/assets/css/base.css">
+  <link rel="stylesheet" href="/turtle-logo/assets/css/book.css">
+</head>
+<body>
+  
+  
+  
+<nav class="site-nav">
+  <a class="nav-brand" href="/turtle-logo/es/">Turtle Logo</a>
+  <a href="/turtle-logo/es/book/">El Libro de la Tortuga</a>
+  <a href="/turtle-logo/es/play/">Jugar</a>
+  <a class="nav-lang" href="/turtle-logo/book/">EN</a>
+</nav>
+
+
+
+  <div class="chapter-layout">
+    
+    <div class="chapter-turtle">
+      <div class="chapter-canvas-wrap" id="chapter-canvas-wrap">
+        <canvas id="chapter-drawing"></canvas>
+        <canvas id="chapter-sprite"></canvas>
+      </div>
+      <script>
+        (function() {
+          var wrap = document.getElementById('chapter-canvas-wrap');
+          var w = wrap.clientWidth, h = wrap.clientHeight;
+          ['chapter-drawing','chapter-sprite'].forEach(function(id) {
+            var c = document.getElementById(id);
+            c.width = w; c.height = h;
+          });
+        })();
+      </script>
+      <div class="chapter-turtle-bar">
+        <div class="chapter-output" id="chapter-output"></div>
+        <button class="lang-toggle-btn" id="chapter-lang-btn" title="Cambiar idioma">ES</button>
+        <button class="chapter-reset-btn" id="chapter-reset" title="Borrar pantalla y reiniciar">Reiniciar</button>
+      </div>
+    </div>
+    
+
+    <div class="chapter-content">
+      <h1>Capítulo 20: Diseña Tu Propia Tortuga</h1>
+      <p>La tortuga está hecha de cuadritos — una cuadrícula de 16 por 16, ¡como arte de píxeles!</p>
+<p>Puedes diseñar tu propia forma.</p>
+<p>Escribe:</p>
+<div class="logo-block" data-code="EDITSHAPE COHETE">
+  <pre><code>EDITSHAPE COHETE</code></pre>
+  <div class="logo-toolbar">
+    <button class="logo-run-btn" title="Ejecutar">Ejecutar</button>
+  </div>
+</div>
+<p>Aparece una ventana con una cuadrícula.
+Haz clic en los cuadritos para rellenarlos.
+Arrastra para pintar.
+Cuando termines, haz clic en <strong>OK</strong>.</p>
+<p>¡Ahora la tortuga se ve como tu dibujo!</p>
+<p>Para volver a la tortuga normal:</p>
+<div class="logo-block" data-code="SETSHAPE TURTLE">
+  <pre><code>SETSHAPE TURTLE</code></pre>
+  <div class="logo-toolbar">
+    <button class="logo-run-btn" title="Ejecutar">Ejecutar</button>
+  </div>
+</div>
+<p>Para usar tu forma de cohete otra vez:</p>
+<div class="logo-block" data-code="SETSHAPE COHETE">
+  <pre><code>SETSHAPE COHETE</code></pre>
+  <div class="logo-toolbar">
+    <button class="logo-run-btn" title="Ejecutar">Ejecutar</button>
+  </div>
+</div>
+<p>Para ver todas tus formas guardadas:</p>
+<div class="logo-block" data-code="SHAPES">
+  <pre><code>SHAPES</code></pre>
+  <div class="logo-toolbar">
+    <button class="logo-run-btn" title="Ejecutar">Ejecutar</button>
+  </div>
+</div>
+<hr>
+
+
+      <div class="chapter-nav">
+        
+          <a href="/turtle-logo/es/book/capitulo-19-ve-a-casa/">&larr; Capítulo 19: Ve a Casa</a>
+        
+        
+          <a href="/turtle-logo/es/book/guia-rapida/">Guía Rápida &rarr;</a>
+        
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">Turtle Logo &copy; 2026</footer>
+  
+  <script type="module" src="/turtle-logo/assets/js/code-block.js"></script>
+  
+</body>
+</html>
