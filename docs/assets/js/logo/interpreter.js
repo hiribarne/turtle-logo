@@ -54,23 +54,25 @@ function suggestCommand(unknown, procedures) {
 export function execute(tokens, runtime, localVars) {
   if (!localVars) localVars = {};
   const t = runtime.turtle;
-  const lang = runtime.language || 'en';
   let i = 0;
+
+  // Use a getter so language changes mid-execution (IDIOMA) take effect immediately
+  function L() { return runtime.language || 'en'; }
 
   function consume() { return tokens[i++]; }
   function needNum(cmd) {
     if (i >= tokens.length)
-      throw new LogoError(msg('needNumber', lang, cmd));
-    return evalExpr(consume(), localVars, runtime.variables, lang);
+      throw new LogoError(msg('needNumber', L(), cmd));
+    return evalExpr(consume(), localVars, runtime.variables, L());
   }
   function needBlock(cmd) {
     if (i >= tokens.length || tokens[i][0] !== '[')
-      throw new LogoError(msg('needBlock', lang, cmd));
+      throw new LogoError(msg('needBlock', L(), cmd));
     return consume()[1];
   }
   function needWord(cmd) {
     if (i >= tokens.length || tokens[i][0] !== 'W')
-      throw new LogoError(msg('needName', lang, cmd));
+      throw new LogoError(msg('needName', L(), cmd));
     return consume()[1];
   }
 
@@ -163,7 +165,7 @@ export function execute(tokens, runtime, localVars) {
           runtime.print(tok2[1]);
         } else {
           try {
-            runtime.print(String(evalExpr(tok2, localVars, runtime.variables, lang)));
+            runtime.print(String(evalExpr(tok2, localVars, runtime.variables, L())));
           } catch (e) {
             runtime.print(tok2[1]);
           }
@@ -174,16 +176,16 @@ export function execute(tokens, runtime, localVars) {
       const b = needNum(rawCmd);
       runtime.print(`= ${a + b}`);
     } else if (cmd === 'TO') {
-      throw new LogoError(msg('useToAlone', lang));
+      throw new LogoError(msg('useToAlone', L()));
 
     } else if (cmd === 'FORGET') {
       const name = needWord(rawCmd).toUpperCase();
       if (name in runtime.procedures) {
         delete runtime.procedures[name];
         saveProcedures(runtime.procedures);
-        runtime.print(msg('forgot', lang, name));
+        runtime.print(msg('forgot', L(), name));
       } else {
-        runtime.print(msg('noProc', lang, name));
+        runtime.print(msg('noProc', L(), name));
       }
 
     // -- LANGUAGE --
@@ -199,10 +201,10 @@ export function execute(tokens, runtime, localVars) {
           saveLanguage('en');
           runtime.print(msg('langSet', 'en'));
         } else {
-          runtime.print(msg('langUsage', lang));
+          runtime.print(msg('langUsage', L()));
         }
       } else {
-        runtime.print(msg('langUsage', lang));
+        runtime.print(msg('langUsage', L()));
       }
       if (runtime.onLanguageChange) runtime.onLanguageChange(runtime.language);
 
@@ -211,12 +213,12 @@ export function execute(tokens, runtime, localVars) {
       const name = needWord('SETSHAPE').toUpperCase();
       if (name === 'TURTLE' || name === 'TORTUGA') {
         t.setBitmap(LogoTurtle.DEFAULT_BITMAP);
-        runtime.print(msg('shapeSet', lang, 'TURTLE'));
+        runtime.print(msg('shapeSet', L(), 'TURTLE'));
       } else if (name in runtime.shapes) {
         t.setBitmap(runtime.shapes[name]);
-        runtime.print(msg('shapeSet', lang, name));
+        runtime.print(msg('shapeSet', L(), name));
       } else {
-        runtime.print(msg('noShape', lang, name));
+        runtime.print(msg('noShape', L(), name));
       }
     } else if (cmd === 'EDITSHAPE') {
       let shapeName = null;
@@ -232,16 +234,16 @@ export function execute(tokens, runtime, localVars) {
       if (runtime.onEditShape) {
         runtime.onEditShape(initial, shapeName);
       } else {
-        runtime.print(msg('shapeNoEditor', lang));
+        runtime.print(msg('shapeNoEditor', L()));
       }
     } else if (cmd === 'SHAPES') {
       const names = Object.keys(runtime.shapes);
       if (names.length > 0) {
-        runtime.print(msg('shapesTitle', lang));
+        runtime.print(msg('shapesTitle', L()));
         for (const name of names) runtime.print(`  ${name}`);
-        runtime.print(msg('shapesUse', lang));
+        runtime.print(msg('shapesUse', L()));
       } else {
-        runtime.print(msg('noShapes', lang));
+        runtime.print(msg('noShapes', L()));
       }
     } else if (cmd === 'DEMO') {
       runDemo(runtime);
@@ -265,39 +267,39 @@ export function execute(tokens, runtime, localVars) {
     } else if (cmd === 'HELP') {
       if (i < tokens.length && tokens[i][0] === 'W') {
         const topic = consume()[1].toUpperCase();
-        const helpMap = lang === 'es' ? HELP_TEXT_ES : HELP_TEXT;
+        const helpMap = L() === 'es' ? HELP_TEXT_ES : HELP_TEXT;
         runtime.print(helpMap[topic] || helpMap['']);
       } else {
-        const helpMap = lang === 'es' ? HELP_TEXT_ES : HELP_TEXT;
+        const helpMap = L() === 'es' ? HELP_TEXT_ES : HELP_TEXT;
         runtime.print(helpMap['']);
       }
     } else if (cmd === 'BYE') {
-      runtime.print(msg('bye', lang));
+      runtime.print(msg('bye', L()));
       return;
     } else if (cmd === 'PROCS') {
       const names = Object.keys(runtime.procedures);
       if (names.length > 0) {
-        runtime.print(msg('procsTitle', lang));
+        runtime.print(msg('procsTitle', L()));
         for (const name of names) {
           const [params] = runtime.procedures[name];
           const args = params.map(p => `:${p}`).join(' ');
           runtime.print(`  ${name} ${args}`);
         }
       } else {
-        runtime.print(msg('noProcs', lang));
+        runtime.print(msg('noProcs', L()));
       }
     } else if (cmd === 'POS') {
       const [x, y] = t.pos();
       const h = t.getHeading();
-      runtime.print(msg('posMsg', lang, Math.round(x), Math.round(y), Math.round(h)));
+      runtime.print(msg('posMsg', L(), Math.round(x), Math.round(y), Math.round(h)));
     } else if (cmd === '' || cmd === 'END') {
       // skip
     } else {
       const suggestion = suggestCommand(tok[1], runtime.procedures);
       if (suggestion) {
-        throw new LogoError(msg('unknownMean', lang, tok[1], suggestion));
+        throw new LogoError(msg('unknownMean', L(), tok[1], suggestion));
       } else {
-        throw new LogoError(msg('unknownCmd', lang, tok[1]));
+        throw new LogoError(msg('unknownCmd', L(), tok[1]));
       }
     }
   }

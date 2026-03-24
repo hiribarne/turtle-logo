@@ -93,6 +93,7 @@ OTHER:
   PROCS        list your procedures
   POS          where is the turtle?
   HELP FD      help for one command
+  IDIOMA       switch language / cambiar idioma
   BYE          quit
 \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500`,
   'FD': 'FD (or FORWARD) n \u2014 move forward n steps.\nExample: FD 100',
@@ -136,8 +137,10 @@ OTHER:
   'IF': 'IF condition [commands] \u2014 run commands if condition is not 0.',
   'IFELSE': 'IFELSE condition [true-commands] [false-commands]',
   'STOP': 'STOP \u2014 stop the current procedure.',
-  'BYE': 'BYE \u2014 quit Turtle Logo.',
-  'CLEAN': 'CLEAN \u2014 erase all drawings but keep the turtle where it is.',
+  'BYE': 'BYE (ADIOS) \u2014 quit Turtle Logo.',
+  'CLEAN': 'CLEAN (LIMPIAR) \u2014 erase all drawings but keep the turtle where it is.',
+  'LANGUAGE': 'LANGUAGE ENGLISH / IDIOMA ESPA\u00d1OL \u2014 switch output language.',
+  'IDIOMA': 'IDIOMA ESPA\u00d1OL / LANGUAGE ENGLISH \u2014 cambiar idioma.',
 };
 
 /** Levenshtein edit distance. */
