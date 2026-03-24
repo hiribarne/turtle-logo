@@ -1,9 +1,9 @@
 /**
  * Turtle Logo — Playground
- * Full browser-based interpreter matching the Python/tkinter app.
+ * Full browser-based bilingual interpreter.
  */
 
-import { LogoRuntime, LogoTurtle, saveProcedures } from './logo/index.js';
+import { LogoRuntime, LogoTurtle, saveProcedures, msg } from './logo/index.js';
 import { ShapeEditor } from './shape-editor.js';
 
 const output = document.getElementById('output');
@@ -11,12 +11,20 @@ const input = document.getElementById('cmd-input');
 const drawingCanvas = document.getElementById('drawing-canvas');
 const spriteCanvas = document.getElementById('sprite-canvas');
 const canvasWrap = document.getElementById('canvas-wrap');
+const langBtn = document.getElementById('lang-btn');
 
 function printOutput(text) {
   const line = document.createElement('div');
   line.textContent = text;
   output.appendChild(line);
   output.scrollTop = output.scrollHeight;
+}
+
+function updateLangButton() {
+  if (langBtn) {
+    langBtn.textContent = runtime.language === 'es' ? 'EN' : 'ES';
+    langBtn.title = runtime.language === 'es' ? 'Switch to English' : 'Cambiar a Español';
+  }
 }
 
 const runtime = new LogoRuntime(drawingCanvas, spriteCanvas, {
@@ -27,8 +35,20 @@ const runtime = new LogoRuntime(drawingCanvas, spriteCanvas, {
   onEditShape(initial, shapeName) {
     openShapeEditor(initial, shapeName);
   },
+  onLanguageChange() {
+    updateLangButton();
+  },
   persist: true,
 });
+
+// Language button
+if (langBtn) {
+  updateLangButton();
+  langBtn.addEventListener('click', () => {
+    const newLang = runtime.language === 'es' ? 'en' : 'es';
+    runtime.run(newLang === 'es' ? 'IDIOMA ESPAÑOL' : 'LANGUAGE ENGLISH');
+  });
+}
 
 // -- Shape editor --
 
@@ -59,9 +79,9 @@ function openShapeEditor(initialBitmap, shapeName) {
     runtime.turtle.setBitmap(bitmap);
     if (shapeName) {
       runtime.saveShape(shapeName, bitmap);
-      printOutput(`Shape ${shapeName} saved!`);
+      printOutput(msg('shapeSaved', runtime.language, shapeName));
     } else {
-      printOutput('Turtle shape updated!');
+      printOutput(msg('shapeUpdated', runtime.language));
     }
     editorOverlay.remove();
     editorOverlay = null;
@@ -88,7 +108,7 @@ function openShapeEditor(initialBitmap, shapeName) {
 const history = [];
 let historyPos = 0;
 
-// -- TO...END collection mode --
+// -- TO/PARA...END/FIN collection mode --
 
 let toMode = false;
 let toName = '';
@@ -104,13 +124,13 @@ function handleInput() {
   historyPos = history.length;
   printOutput(`?> ${line}`);
 
-  // TO...END collection
   if (toMode) {
-    if (line.toUpperCase() === 'END') {
+    const upper = line.toUpperCase();
+    if (upper === 'END' || upper === 'FIN') {
       const body = toBody.join(' ');
       runtime.procedures[toName] = [toParams, body];
       saveProcedures(runtime.procedures);
-      printOutput(`OK! I learned ${toName}.`);
+      printOutput(msg('toLearned', runtime.language, toName));
       toMode = false;
     } else {
       toBody.push(line);
@@ -121,22 +141,21 @@ function handleInput() {
 
   if (line.startsWith(';')) return;
 
-  // Start TO definition
-  if (line.toUpperCase().startsWith('TO ')) {
+  const upper = line.toUpperCase();
+  if (upper.startsWith('TO ') || upper.startsWith('PARA ')) {
     const parts = line.split(/\s+/);
     if (parts.length < 2) {
-      printOutput('Oops! TO needs a name. Example: TO SQUARE');
+      printOutput(msg('toNeedName', runtime.language));
       return;
     }
     toName = parts[1].toUpperCase();
     toParams = parts.slice(2).map(p => p.replace(/^:/, ''));
     toBody = [];
     toMode = true;
-    printOutput(`  (Now type the body of ${toName}. Type END when done.)`);
+    printOutput(msg('toCollecting', runtime.language, toName));
     return;
   }
 
-  // Normal execution
   const err = runtime.run(line);
   if (err) printOutput(err);
 }
@@ -164,20 +183,18 @@ input.addEventListener('keydown', (e) => {
 
 // -- Startup --
 
-// Tell turtle the logical canvas size (CSS pixels, before DPR scaling)
 if (window._canvasLogicalWidth) {
   runtime.turtle.setLogicalSize(window._canvasLogicalWidth, window._canvasLogicalHeight);
   runtime.turtle._drawCursor();
 }
 window._logoRuntime = runtime;
 
-printOutput("Turtle Logo \u2014 Your Turtle is ready.");
-printOutput('Type HELP to see commands.');
+printOutput(msg('ready', runtime.language));
+printOutput(msg('helpHint', runtime.language));
 
-// Report loaded procedures
 const procNames = Object.keys(runtime.procedures);
 if (procNames.length > 0) {
-  printOutput(`Loaded ${procNames.length} saved procedure${procNames.length !== 1 ? 's' : ''}: ${procNames.join(', ')}`);
+  printOutput(msg('loadedProcs', runtime.language, procNames.length, procNames.join(', ')));
 }
 
 input.focus();

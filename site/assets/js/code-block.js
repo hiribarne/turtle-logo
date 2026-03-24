@@ -1,11 +1,10 @@
 /**
  * Turtle Logo — Interactive Code Block Controller
- * One shared LogoRuntime across the entire book (persists procedures via localStorage).
- * Multi-line blocks have per-line Run buttons.
- * Supports TO...END collection across separate code blocks (Chapter 15 pattern).
+ * One shared bilingual LogoRuntime across the entire book.
+ * Supports TO/PARA...END/FIN collection across separate code blocks.
  */
 
-import { LogoRuntime, saveProcedures } from './logo/index.js';
+import { LogoRuntime, saveProcedures, msg } from './logo/index.js';
 import { ShapeEditor } from './shape-editor.js';
 
 const drawingCanvas = document.getElementById('chapter-drawing');
@@ -13,6 +12,7 @@ const spriteCanvas = document.getElementById('chapter-sprite');
 const canvasWrap = document.getElementById('chapter-canvas-wrap');
 const outputEl = document.getElementById('chapter-output');
 const resetBtn = document.getElementById('chapter-reset');
+const langBtn = document.getElementById('chapter-lang-btn');
 
 if (drawingCanvas && spriteCanvas) {
   let editorOverlay = null;
@@ -20,6 +20,13 @@ if (drawingCanvas && spriteCanvas) {
   function print(text) {
     outputEl.textContent += text + '\n';
     outputEl.scrollTop = outputEl.scrollHeight;
+  }
+
+  function updateLangButton() {
+    if (langBtn) {
+      langBtn.textContent = runtime.language === 'es' ? 'EN' : 'ES';
+      langBtn.title = runtime.language === 'es' ? 'Switch to English' : 'Cambiar a Español';
+    }
   }
 
   function openShapeEditor(initialBitmap, shapeName) {
@@ -47,9 +54,9 @@ if (drawingCanvas && spriteCanvas) {
       runtime.turtle.setBitmap(bitmap);
       if (shapeName) {
         runtime.saveShape(shapeName, bitmap);
-        print(`Shape ${shapeName} saved!`);
+        print(msg('shapeSaved', runtime.language, shapeName));
       } else {
-        print('Turtle shape updated!');
+        print(msg('shapeUpdated', runtime.language));
       }
       editorOverlay.remove();
       editorOverlay = null;
@@ -79,10 +86,22 @@ if (drawingCanvas && spriteCanvas) {
     onEditShape(initial, shapeName) {
       openShapeEditor(initial, shapeName);
     },
+    onLanguageChange() {
+      updateLangButton();
+    },
     persist: true,
   });
 
-  // -- TO...END collection mode (mirrors playground behavior) --
+  // Language button
+  if (langBtn) {
+    updateLangButton();
+    langBtn.addEventListener('click', () => {
+      const newLang = runtime.language === 'es' ? 'en' : 'es';
+      runtime.run(newLang === 'es' ? 'IDIOMA ESPAÑOL' : 'LANGUAGE ENGLISH');
+    });
+  }
+
+  // -- TO/PARA...END/FIN collection mode --
   let toMode = false;
   let toName = '';
   let toParams = [];
@@ -97,30 +116,28 @@ if (drawingCanvas && spriteCanvas) {
   });
 
   function runCode(code, sourceEl) {
-    // Scroll canvas into view if not visible
     const rect = canvasWrap.getBoundingClientRect();
     if (rect.bottom < 0 || rect.top > window.innerHeight) {
       canvasWrap.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
 
-    // Highlight briefly
     if (sourceEl) {
       sourceEl.classList.add('logo-block--active');
       setTimeout(() => sourceEl.classList.remove('logo-block--active'), 600);
     }
 
-    // Process each line (supports TO...END across blocks)
     const lines = code.split('\n');
     for (const raw of lines) {
       const line = raw.trim();
       if (!line) continue;
 
       if (toMode) {
-        if (line.toUpperCase() === 'END') {
+        const upper = line.toUpperCase();
+        if (upper === 'END' || upper === 'FIN') {
           const body = toBody.join(' ');
           runtime.procedures[toName] = [toParams, body];
           saveProcedures(runtime.procedures);
-          print(`OK! I learned ${toName}.`);
+          print(msg('toLearned', runtime.language, toName));
           toMode = false;
         } else {
           toBody.push(line);
@@ -129,17 +146,18 @@ if (drawingCanvas && spriteCanvas) {
         continue;
       }
 
-      if (line.toUpperCase().startsWith('TO ')) {
+      const upper = line.toUpperCase();
+      if (upper.startsWith('TO ') || upper.startsWith('PARA ')) {
         const parts = line.split(/\s+/);
         if (parts.length < 2) {
-          print('Oops! TO needs a name. Example: TO SQUARE');
+          print(msg('toNeedName', runtime.language));
           continue;
         }
         toName = parts[1].toUpperCase();
         toParams = parts.slice(2).map(p => p.replace(/^:/, ''));
         toBody = [];
         toMode = true;
-        print(`  (Now type the body of ${toName}. Type END when done.)`);
+        print(msg('toCollecting', runtime.language, toName));
         continue;
       }
 
@@ -148,7 +166,6 @@ if (drawingCanvas && spriteCanvas) {
     }
   }
 
-  // Wire up block-level Run / Run All buttons
   document.querySelectorAll('.logo-block').forEach(block => {
     const code = block.dataset.code;
     const btn = block.querySelector('.logo-run-btn');
@@ -157,7 +174,6 @@ if (drawingCanvas && spriteCanvas) {
     }
   });
 
-  // Wire up per-line Run buttons
   document.querySelectorAll('.logo-line').forEach(line => {
     const code = line.dataset.code;
     const btn = line.querySelector('.logo-run-line');

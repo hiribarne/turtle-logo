@@ -364,8 +364,30 @@ KNOWN_COMMANDS = [
     'COLOR', 'SETWIDTH', 'CS', 'CLEARSCREEN', 'CLEAN', 'HT', 'HIDETURTLE',
     'ST', 'SHOWTURTLE', 'SETBG', 'BGCOLOR', 'REPEAT', 'IF', 'IFELSE', 'MAKE',
     'STOP', 'PRINT', 'SUM', 'TO', 'HELP', 'BYE', 'PROCS', 'POS', 'FORGET',
-    'DEMO', 'SETSHAPE', 'EDITSHAPE', 'SHAPES',
+    'DEMO', 'SETSHAPE', 'EDITSHAPE', 'SHAPES', 'LANGUAGE', 'IDIOMA',
+    # Spanish aliases
+    'AD', 'ADELANTE', 'AT', 'ATRAS', 'DE', 'DERECHA', 'IZ', 'IZQUIERDA',
+    'CENTRO', 'SP', 'SINPLUMA', 'CP', 'CONPLUMA', 'FCOLORP',
+    'BP', 'BORRAPANTALLA', 'LIMPIAR', 'OT', 'OCULTARTORTUGA',
+    'MT', 'MOSTRARTORTUGA', 'FCOLORF', 'REPETIR', 'REPITE',
+    'SI', 'SISINO', 'DA', 'ALTO', 'ESCRIBE', 'ES', 'SUMA',
+    'PARA', 'FIN', 'OLVIDAR', 'AYUDA', 'ADIOS',
 ]
+
+# Spanish command aliases → canonical English command
+SPANISH_ALIASES = {
+    'AD': 'FD', 'ADELANTE': 'FD', 'AT': 'BK', 'ATRAS': 'BK',
+    'DE': 'RT', 'DERECHA': 'RT', 'IZ': 'LT', 'IZQUIERDA': 'LT',
+    'CENTRO': 'HOME', 'SP': 'PU', 'SINPLUMA': 'PU',
+    'CP': 'PD', 'CONPLUMA': 'PD', 'FCOLORP': 'SETPC',
+    'BP': 'CS', 'BORRAPANTALLA': 'CS', 'LIMPIAR': 'CLEAN',
+    'OT': 'HT', 'OCULTARTORTUGA': 'HT', 'MT': 'ST', 'MOSTRARTORTUGA': 'ST',
+    'FCOLORF': 'SETBG', 'REPETIR': 'REPEAT', 'REPITE': 'REPEAT',
+    'SI': 'IF', 'SISINO': 'IFELSE', 'DA': 'MAKE', 'ALTO': 'STOP',
+    'ESCRIBE': 'PRINT', 'ES': 'PRINT', 'SUMA': 'SUM',
+    'PARA': 'TO', 'FIN': 'END', 'OLVIDAR': 'FORGET',
+    'AYUDA': 'HELP', 'ADIOS': 'BYE',
+}
 
 # ─── TYPO SUGGESTION ────────────────────────────────────────────────────────
 
@@ -522,7 +544,8 @@ def execute(tokens, app, local_vars=None):
         tok = consume()
         if tok[0] != 'W':
             continue
-        cmd = tok[1].upper()
+        raw_cmd = tok[1].upper()
+        cmd = SPANISH_ALIASES.get(raw_cmd, raw_cmd)
 
         # ── MOTION ──────────────────────────────────────────────────────────
         if cmd in ('FD', 'FORWARD'):
@@ -641,7 +664,7 @@ def execute(tokens, app, local_vars=None):
         # ── SHAPE COMMANDS ──────────────────────────────────────────────────
         elif cmd == 'SETSHAPE':
             name = need_word('SETSHAPE').upper()
-            if name == 'TURTLE':
+            if name in ('TURTLE', 'TORTUGA'):
                 # Reset to default turtle
                 t.set_bitmap(LogoTurtle.DEFAULT_BITMAP)
                 app.print_output("Shape set to TURTLE.")
@@ -674,6 +697,13 @@ def execute(tokens, app, local_vars=None):
 
         elif cmd == 'DEMO':
             run_demo(app)
+
+        elif cmd in ('LANGUAGE', 'IDIOMA') or raw_cmd in ('LANGUAGE', 'IDIOMA'):
+            if i < len(tokens) and tokens[i][0] == 'W':
+                choice = consume()[1].upper()
+                app.print_output("Language/Idioma: both English and Spanish commands always work.")
+            else:
+                app.print_output("Both English and Spanish commands always work. / Los comandos en inglés y español siempre funcionan.")
 
         elif cmd in procedures:
             param_names, body = procedures[cmd]
@@ -949,9 +979,9 @@ class LogoApp:
         # Echo the command
         self.print_output(f"?> {line}")
 
-        # ── TO...END collection mode ────────────────────────────────────
+        # ── TO/PARA...END/FIN collection mode ─────────────────────────
         if self.to_mode:
-            if line.upper() == 'END':
+            if line.upper() in ('END', 'FIN'):
                 body = ' '.join(self.to_body)
                 procedures[self.to_name] = (self.to_params, body)
                 save_procedures()
@@ -965,17 +995,17 @@ class LogoApp:
         if line.startswith(';'):
             return
 
-        # ── Start TO definition ─────────────────────────────────────────
-        if line.upper().startswith('TO '):
+        # ── Start TO/PARA definition ──────────────────────────────────
+        if line.upper().startswith('TO ') or line.upper().startswith('PARA '):
             parts = line.split()
             if len(parts) < 2:
-                self.print_output("Oops! TO needs a name. Example: TO SQUARE")
+                self.print_output("Oops! TO/PARA needs a name. Example: TO SQUARE")
                 return
             self.to_name = parts[1].upper()
             self.to_params = [p.lstrip(':') for p in parts[2:]]
             self.to_body = []
             self.to_mode = True
-            self.print_output(f"  (Now type the body of {self.to_name}. Type END when done.)")
+            self.print_output(f"  (Now type the body of {self.to_name}. Type END/FIN when done.)")
             return
 
         # ── Normal command execution ────────────────────────────────────
