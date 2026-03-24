@@ -91,7 +91,7 @@
 
 #chapter-cmd-input {
   flex: 1;
-  background: transparent;
+  background: var(--bg-darker);
   border: none;
   outline: none;
   color: #fff;
@@ -100,8 +100,9 @@
   caret-color: #fff;
   -webkit-appearance: none;
   appearance: none;
-  padding: 0;
+  padding: 0.2rem 0;
   margin: 0;
+  border-radius: 0;
 }
 
 #chapter-cmd-input::placeholder {
