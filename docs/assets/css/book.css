@@ -71,6 +71,38 @@
   color: #fff;
 }
 
+.chapter-input-row {
+  display: flex;
+  align-items: center;
+  background: var(--bg-darker);
+  border-radius: 4px;
+  padding: 0.25rem 0.5rem;
+  margin-top: 0.3rem;
+}
+
+.chapter-prompt {
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  margin-right: 0.3rem;
+  user-select: none;
+}
+
+#chapter-cmd-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  caret-color: #fff;
+}
+
+#chapter-cmd-input::placeholder {
+  color: #555;
+}
+
 /* -- Chapter content -- */
 
 .chapter-content {

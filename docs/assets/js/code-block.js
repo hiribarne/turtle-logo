@@ -13,6 +13,7 @@ const canvasWrap = document.getElementById('chapter-canvas-wrap');
 const outputEl = document.getElementById('chapter-output');
 const resetBtn = document.getElementById('chapter-reset');
 const langBtn = document.getElementById('chapter-lang-btn');
+const cmdInput = document.getElementById('chapter-cmd-input');
 
 if (drawingCanvas && spriteCanvas) {
   let editorOverlay = null;
@@ -181,4 +182,37 @@ if (drawingCanvas && spriteCanvas) {
       btn.addEventListener('click', () => runCode(code, line));
     }
   });
+
+  // -- Command input with history --
+  if (cmdInput) {
+    const history = [];
+    let historyPos = 0;
+
+    cmdInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        const line = cmdInput.value.trim();
+        cmdInput.value = '';
+        if (!line) return;
+        history.push(line);
+        historyPos = history.length;
+        print(`?> ${line}`);
+        runCode(line, null);
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        if (history.length && historyPos > 0) {
+          historyPos--;
+          cmdInput.value = history[historyPos];
+        }
+      } else if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        if (historyPos < history.length - 1) {
+          historyPos++;
+          cmdInput.value = history[historyPos];
+        } else {
+          historyPos = history.length;
+          cmdInput.value = '';
+        }
+      }
+    });
+  }
 }
