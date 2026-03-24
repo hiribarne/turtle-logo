@@ -47,12 +47,26 @@
   font-size: 0.75rem;
   color: var(--accent);
   background: var(--bg-darker);
+  border: 1px solid var(--border);
   border-radius: 4px;
   padding: 0.25rem 0.5rem;
   max-height: 3.5rem;
   overflow-y: auto;
   white-space: pre-wrap;
   min-height: 1.6rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) var(--bg-darker);
+}
+
+.chapter-output::-webkit-scrollbar {
+  width: 6px;
+}
+.chapter-output::-webkit-scrollbar-track {
+  background: var(--bg-darker);
+}
+.chapter-output::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
 }
 
 .chapter-reset-btn {
