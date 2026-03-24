@@ -54,19 +54,11 @@
   overflow-y: auto;
   white-space: pre-wrap;
   min-height: 1.6rem;
-  scrollbar-width: thin;
-  scrollbar-color: var(--border) var(--bg-darker);
+  scrollbar-width: none;
 }
 
 .chapter-output::-webkit-scrollbar {
-  width: 6px;
-}
-.chapter-output::-webkit-scrollbar-track {
-  background: var(--bg-darker);
-}
-.chapter-output::-webkit-scrollbar-thumb {
-  background: var(--border);
-  border-radius: 3px;
+  display: none;
 }
 
 .chapter-reset-btn {
