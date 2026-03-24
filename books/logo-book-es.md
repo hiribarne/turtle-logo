@@ -47,9 +47,9 @@ El número le dice a la tortuga qué tan lejos ir.
 Prueba estos uno a la vez:
 
 ```
-AD 100
-AD 10
-AD 200
+AD 20
+AD 80
+AD 40
 ```
 
 ¿Qué pasa cuando el número es más grande?

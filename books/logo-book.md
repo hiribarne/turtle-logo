@@ -47,9 +47,9 @@ The number tells the turtle how far to go.
 Try these one at a time:
 
 ```
-FD 100
-FD 10
-FD 200
+FD 20
+FD 80
+FD 40
 ```
 
 What happens when the number is bigger?
