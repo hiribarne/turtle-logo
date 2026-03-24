@@ -60,6 +60,12 @@ export const SPANISH_ALIASES = {
   'PARA':           'TO',
   'FIN':            'END',
   'OLVIDAR':        'FORGET',
+  // Shapes & misc
+  'EDITARFORMA':    'EDITSHAPE',
+  'FIJARFORMA':     'SETSHAPE',
+  'FORMAS':         'SHAPES',
+  'GROSOR':         'SETWIDTH',
+  'PROCEDIMIENTOS': 'PROCS',
   // Utility
   'AYUDA':          'HELP',
   'ADIOS':          'BYE',
@@ -88,6 +94,7 @@ export const ALL_KNOWN_COMMANDS = [
   'BORRAPANTALLA', 'LIMPIAR', 'OT', 'OCULTARTORTUGA', 'MT', 'MOSTRARTORTUGA',
   'FCOLORF', 'REPETIR', 'REPITE', 'SI', 'SISINO', 'DA', 'ALTO',
   'ESCRIBE', 'ES', 'SUMA', 'PARA', 'FIN', 'OLVIDAR', 'AYUDA', 'ADIOS',
+  'EDITARFORMA', 'FIJARFORMA', 'FORMAS', 'GROSOR', 'PROCEDIMIENTOS',
 ];
 
 // ─── Messages ────────────────────────────────────────────────────────────────
@@ -212,7 +219,7 @@ PLUMA:
   CP (PD)        pluma abajo (dibuja)
   SP (PU)        pluma arriba (no dibuja)
   FCOLORP 3 (SETPC)  color de pluma (0\u201311)
-  SETWIDTH 3     grosor de l\u00ednea
+  GROSOR 3       grosor de l\u00ednea
 
 PANTALLA:
   BP (CS)        borrar pantalla
@@ -230,15 +237,15 @@ CREAR PROCEDIMIENTOS:
   OLVIDAR CUADRADO  \u2014 olvidar un procedimiento
 
 FORMAS:
-  EDITSHAPE      abrir el editor de formas
-  EDITSHAPE STAR editar/crear una forma
-  SETSHAPE STAR  usar una forma guardada
-  SETSHAPE TURTLE  volver a la tortuga
-  SHAPES         listar formas guardadas
+  EDITARFORMA      abrir el editor de formas
+  EDITARFORMA STAR editar/crear una forma
+  FIJARFORMA STAR  usar una forma guardada
+  FIJARFORMA TORTUGA  volver a la tortuga
+  FORMAS         listar formas guardadas
 
 OTROS:
   DEMO           \u00a1ver un patr\u00f3n genial!
-  PROCS          listar tus procedimientos
+  PROCEDIMIENTOS listar tus procedimientos
   POS            \u00bfd\u00f3nde est\u00e1 la tortuga?
   AYUDA AD       ayuda de un comando
   ADIOS          salir
@@ -285,10 +292,12 @@ OTROS:
   'HELP': 'AYUDA / HELP \u2014 ver todos los comandos.',
   'AYUDA': 'AYUDA / HELP \u2014 ver todos los comandos.',
   'DEMO': 'DEMO \u2014 \u00a1mira a la tortuga dibujar un patr\u00f3n genial!',
-  'SETWIDTH': 'SETWIDTH n \u2014 establecer el grosor de la l\u00ednea.\nEjemplo: SETWIDTH 5',
+  'SETWIDTH': 'GROSOR n (SETWIDTH) \u2014 establecer el grosor de la l\u00ednea.\nEjemplo: GROSOR 5',
+  'GROSOR': 'GROSOR n (SETWIDTH) \u2014 establecer el grosor de la l\u00ednea.\nEjemplo: GROSOR 5',
   'SETXY': 'SETXY x y \u2014 mover la tortuga a la posici\u00f3n x, y.\nEjemplo: SETXY 100 50',
   'POS': 'POS \u2014 muestra la posici\u00f3n y el rumbo de la tortuga.',
-  'PROCS': 'PROCS \u2014 listar todos los procedimientos creados con PARA/TO.',
+  'PROCS': 'PROCEDIMIENTOS (PROCS) \u2014 listar todos los procedimientos creados con PARA/TO.',
+  'PROCEDIMIENTOS': 'PROCEDIMIENTOS (PROCS) \u2014 listar todos los procedimientos creados con PARA/TO.',
   'SUM': 'SUMA a b (SUM) \u2014 sumar dos n\u00fameros e imprimir el resultado.',
   'SUMA': 'SUMA a b (SUM) \u2014 sumar dos n\u00fameros e imprimir el resultado.',
   'IF': 'SI condici\u00f3n [comandos] (IF) \u2014 ejecutar si la condici\u00f3n no es 0.',
@@ -297,9 +306,12 @@ OTROS:
   'SISINO': 'SISINO condici\u00f3n [s\u00ed] [no] (IFELSE)',
   'CLEAN': 'LIMPIAR / CLEAN \u2014 borrar los dibujos pero dejar la tortuga donde est\u00e1.',
   'LIMPIAR': 'LIMPIAR / CLEAN \u2014 borrar los dibujos pero dejar la tortuga donde est\u00e1.',
-  'EDITSHAPE': 'EDITSHAPE o EDITSHAPE nombre \u2014 abrir el editor de formas.\n\u00a1Haz clic en los cuadrados para dibujar tu propia tortuga!\nEjemplo: EDITSHAPE STAR',
-  'SETSHAPE': 'SETSHAPE nombre \u2014 cambiar la tortuga a una forma guardada.\nSETSHAPE TURTLE vuelve a la tortuga normal.\nEjemplo: SETSHAPE STAR',
-  'SHAPES': 'SHAPES \u2014 listar todas las formas guardadas.',
+  'EDITSHAPE': 'EDITARFORMA (EDITSHAPE) nombre \u2014 abrir el editor de formas.\n\u00a1Haz clic en los cuadrados para dibujar tu propia tortuga!\nEjemplo: EDITARFORMA ESTRELLA',
+  'EDITARFORMA': 'EDITARFORMA (EDITSHAPE) nombre \u2014 abrir el editor de formas.\n\u00a1Haz clic en los cuadrados para dibujar tu propia tortuga!\nEjemplo: EDITARFORMA ESTRELLA',
+  'SETSHAPE': 'FIJARFORMA (SETSHAPE) nombre \u2014 cambiar la tortuga a una forma guardada.\nFIJARFORMA TORTUGA vuelve a la tortuga normal.\nEjemplo: FIJARFORMA ESTRELLA',
+  'FIJARFORMA': 'FIJARFORMA (SETSHAPE) nombre \u2014 cambiar la tortuga a una forma guardada.\nFIJARFORMA TORTUGA vuelve a la tortuga normal.\nEjemplo: FIJARFORMA ESTRELLA',
+  'SHAPES': 'FORMAS (SHAPES) \u2014 listar todas las formas guardadas.',
+  'FORMAS': 'FORMAS (SHAPES) \u2014 listar todas las formas guardadas.',
   'IDIOMA': 'IDIOMA ES / LANGUAGE EN \u2014 cambiar el idioma.',
   'LANGUAGE': 'IDIOMA ES / LANGUAGE EN \u2014 cambiar el idioma.',
 };

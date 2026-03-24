@@ -372,6 +372,7 @@ KNOWN_COMMANDS = [
     'MT', 'MOSTRARTORTUGA', 'FCOLORF', 'REPETIR', 'REPITE',
     'SI', 'SISINO', 'DA', 'ALTO', 'ESCRIBE', 'ES', 'SUMA',
     'PARA', 'FIN', 'OLVIDAR', 'AYUDA', 'ADIOS',
+    'EDITARFORMA', 'FIJARFORMA', 'FORMAS', 'GROSOR', 'PROCEDIMIENTOS',
 ]
 
 # Spanish command aliases → canonical English command
@@ -386,6 +387,8 @@ SPANISH_ALIASES = {
     'SI': 'IF', 'SISINO': 'IFELSE', 'DA': 'MAKE', 'ALTO': 'STOP',
     'ESCRIBE': 'PRINT', 'ES': 'PRINT', 'SUMA': 'SUM',
     'PARA': 'TO', 'FIN': 'END', 'OLVIDAR': 'FORGET',
+    'EDITARFORMA': 'EDITSHAPE', 'FIJARFORMA': 'SETSHAPE',
+    'FORMAS': 'SHAPES', 'GROSOR': 'SETWIDTH', 'PROCEDIMIENTOS': 'PROCS',
     'AYUDA': 'HELP', 'ADIOS': 'BYE',
 }
 
