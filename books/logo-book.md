@@ -269,15 +269,6 @@ It looks like a circle!
 
 The turtle cannot draw a real circle. But if you use enough tiny steps, it looks just like one.
 
-Want an even smoother circle? Try this:
-
-```
-CS
-REPEAT 360 [FD 1 RT 1]
-```
-
-360 tiny steps, 1 degree each. That is as close to a perfect circle as the turtle can get!
-
 ---
 
 ## Chapter 9: Change Colors
@@ -683,6 +674,7 @@ SHAPES
 5. Design a **spaceship** turtle with EDITSHAPE and fly it around the screen!
 6. What does `REPEAT 8 [FD 60 RT 45]` draw?
 7. What does `REPEAT 5 [REPEAT 4 [FD 40 RT 90] RT 72]` draw? (A REPEAT inside a REPEAT!)
+8. Draw a **perfect circle**: `REPEAT 360 [FD 1 RT 1]` — 360 tiny steps, 1 degree each. That is as close to a perfect circle as the turtle can get!
 
 ---
 

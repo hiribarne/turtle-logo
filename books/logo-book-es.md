@@ -269,15 +269,6 @@ REPETIR 36 [AD 10 DE 10]
 
 La tortuga no puede dibujar un círculo de verdad. Pero si usas suficientes pasitos, se ve igualito.
 
-¿Quieres un círculo más suave? Prueba esto:
-
-```
-BP
-REPETIR 360 [AD 1 DE 1]
-```
-
-360 pasitos, 1 grado cada uno. ¡Eso es lo más cerca de un círculo perfecto que la tortuga puede llegar!
-
 ---
 
 ## Capítulo 9: Cambia los Colores
@@ -354,23 +345,23 @@ REPETIR 6 [AD 80 AT 80 DE 60]
 Puedes hacer tus líneas más gruesas o más delgadas.
 
 ```
-SETWIDTH 5
+GROSOR 5
 ```
 
-**SETWIDTH** ajusta qué tan grueso dibuja el lápiz.
+**GROSOR** ajusta qué tan grueso dibuja el lápiz.
 El número es el ancho. ¡1 es delgado, 5 es grueso, 10 es muy grueso!
 
 Prueba esto:
 
 ```
 BP
-SETWIDTH 1
+GROSOR 1
 AD 60
 DE 90
-SETWIDTH 5
+GROSOR 5
 AD 60
 DE 90
-SETWIDTH 10
+GROSOR 10
 AD 60
 ```
 
@@ -601,7 +592,7 @@ Puedes diseñar tu propia forma.
 Escribe:
 
 ```
-EDITSHAPE COHETE
+EDITARFORMA COHETE
 ```
 
 Aparece una ventana con una cuadrícula.
@@ -614,19 +605,19 @@ Cuando termines, haz clic en **OK**.
 Para volver a la tortuga normal:
 
 ```
-SETSHAPE TURTLE
+FIJARFORMA TORTUGA
 ```
 
 Para usar tu forma de cohete otra vez:
 
 ```
-SETSHAPE COHETE
+FIJARFORMA COHETE
 ```
 
 Para ver todas tus formas guardadas:
 
 ```
-SHAPES
+FORMAS
 ```
 
 ---
@@ -645,16 +636,16 @@ SHAPES
 | CP | PD | Con pluma (dibuja) |
 | FCOLORP 1 | SETPC 1 | Color de pluma (0-11) |
 | FCOLORF 0 | SETBG 0 | Color de fondo (0-15) |
-| SETWIDTH 3 | SETWIDTH 3 | Grosor de línea |
+| GROSOR 3 | SETWIDTH 3 | Grosor de línea |
 | CENTRO | HOME | Ir al centro |
 | OT / MT | HT / ST | Ocultar / Mostrar tortuga |
 | POS | POS | ¿Dónde está la tortuga? |
 | PARA nombre ... FIN | TO name ... END | Crear un comando nuevo |
 | OLVIDAR nombre | FORGET name | Olvidar un comando que hiciste |
-| PROCS | PROCS | Lista de tus comandos |
-| EDITSHAPE nombre | EDITSHAPE name | Diseñar una forma nueva |
-| SETSHAPE nombre | SETSHAPE name | Usar una forma guardada |
-| SHAPES | SHAPES | Lista de formas guardadas |
+| PROCEDIMIENTOS | PROCS | Lista de tus comandos |
+| EDITARFORMA nombre | EDITSHAPE name | Diseñar una forma nueva |
+| FIJARFORMA nombre | SETSHAPE name | Usar una forma guardada |
+| FORMAS | SHAPES | Lista de formas guardadas |
 | DEMO | DEMO | Ver un patrón genial |
 | AYUDA | HELP | Ver todos los comandos |
 | ADIOS | BYE | Salir |
@@ -682,9 +673,10 @@ SHAPES
 2. Dibuja la letra **D** — ¡de David!
 3. Dibuja un **arcoíris**. (Usa SP y CP para moverte entre arcos. Usa FCOLORP para cambiar colores. Un arco de arcoíris es medio círculo.)
 4. Haz un **copo de nieve**. (Pista: REPETIR 6 con ramas que van hacia afuera y regresan.)
-5. ¡Diseña una tortuga con forma de **nave espacial** con EDITSHAPE y vuela por la pantalla!
+5. ¡Diseña una tortuga con forma de **nave espacial** con EDITARFORMA y vuela por la pantalla!
 6. ¿Qué dibuja `REPETIR 8 [AD 60 DE 45]`?
 7. ¿Qué dibuja `REPETIR 5 [REPETIR 4 [AD 40 DE 90] DE 72]`? (¡Un REPETIR dentro de otro REPETIR!)
+8. Dibuja un **círculo perfecto**: `REPETIR 360 [AD 1 DE 1]` — 360 pasitos, 1 grado cada uno. ¡Lo más cerca de un círculo perfecto!
 
 ---
 
