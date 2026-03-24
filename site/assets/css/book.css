@@ -75,15 +75,16 @@
   display: flex;
   align-items: center;
   background: var(--bg-darker);
+  border: 1px solid var(--border);
   border-radius: 4px;
-  padding: 0.25rem 0.5rem;
+  padding: 0.3rem 0.5rem;
   margin-top: 0.3rem;
 }
 
 .chapter-prompt {
   color: var(--accent);
   font-family: var(--font-mono);
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   margin-right: 0.3rem;
   user-select: none;
 }
@@ -95,12 +96,21 @@
   outline: none;
   color: #fff;
   font-family: var(--font-mono);
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   caret-color: #fff;
+  -webkit-appearance: none;
+  appearance: none;
+  padding: 0;
+  margin: 0;
 }
 
 #chapter-cmd-input::placeholder {
   color: #555;
+  font-size: 0.8rem;
+}
+
+#chapter-cmd-input:focus {
+  outline: none;
 }
 
 /* -- Chapter content -- */
